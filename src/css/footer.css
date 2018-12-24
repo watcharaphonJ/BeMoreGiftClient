@@ -1,0 +1,19 @@
+.footer{
+    margin-top: 100px;
+    background-color: #f1f1f1;
+    padding: 3rem 1.5rem 6rem;
+}
+
+
+@media only screen and (max-width:440px){
+    .box-footer{
+        justify-content: space-between;
+    }
+    .logo-footer{
+        width: 40%;
+    }
+    .header-helpful{
+        font-size: 21px;
+        color: #333;
+    }
+}

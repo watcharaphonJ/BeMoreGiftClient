@@ -9,7 +9,10 @@
 {
     max-width: 60px;
 }
-
+.image{
+    float: left;
+    width: 30%;
+}
 .address{
     font-size: 16px;
     font-weight: 300;

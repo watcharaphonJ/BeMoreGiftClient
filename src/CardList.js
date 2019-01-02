@@ -24,7 +24,7 @@ export default class CardList extends Component {
         console.log(this.props.detail)
         let nameDetail = this.props.detail.name
         let addressDetail = this.props.detail.address
-        let star = (this.props.detail.rating.sum / this.props.detail.rating.count) || 0
+        let star = Math.round((this.props.detail.rating.sum / this.props.detail.rating.count)) || 0
         this.setState({
             name: nameDetail,
             district: addressDetail.district,

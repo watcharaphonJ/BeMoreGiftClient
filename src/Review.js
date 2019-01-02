@@ -15,6 +15,7 @@ import threeStar from "./img/3.png"
 import fourStar from "./img/4.png"
 import fiveStar from "./img/5.png"
 import Moment from 'react-moment';
+import swal from 'sweetalert';
 const API_URL = process.env.REACT_APP_API_URL;
 export default class Review extends Component {
     constructor(props) {
@@ -131,22 +132,28 @@ export default class Review extends Component {
     postReview = () => {
         let { name, email, comment, rating } = this.state
         console.log(name + email + comment + rating);
-        fetch('https://api.bemoregift.com/review/' + this.props.location.state._id, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "name": name,
-                "email": email,
-                "review": comment,
-                "rating": rating
+        if (name & email & comment & rating) {
+            fetch('https://api.bemoregift.com/review/' + this.props.location.state._id, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "name": name,
+                    "email": email,
+                    "review": comment,
+                    "rating": rating
+                })
             })
-        })
-            .then(response => response.json())
-            .then(data => alert(data.results));
-        window.location.reload()
+                .then(response => response.json())
+                .then(data => alert(data.results));
+            swal("Thank you!!", "for your review :)", "success").then(() => { window.location.reload() })
+        } else {
+            swal("Please complete the fill", "", "error");
+
+        }
+
 
     }
     componentWillMount = () => {

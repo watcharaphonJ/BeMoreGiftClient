@@ -241,7 +241,7 @@ export default class Review extends Component {
                                         <div className="titlereview">{shop}</div>
                                         <span>
                                             <div className="listing-location"><i class="fas fa-map-marker-alt"></i>
-                                                {district + province}
+                                                {"    " + district + ", " + province}
                                             </div>
                                         </span>
                                     </div>
@@ -306,7 +306,9 @@ export default class Review extends Component {
 
                                                                     <div>
                                                                         <Moment data={review.dateadded} />
-                                                                        <div> {review.dateadded}</div>
+                                                                        <div> {
+                                                                            review.dateadded
+                                                                        }</div>
                                                                     </div>
                                                                     <img className="review" src={this.starPath(review.rating)} />
                                                                 </div>
@@ -471,10 +473,10 @@ export default class Review extends Component {
                                         <div id="contact" className="title-contact">
                                             Contact
                                         </div>
-                                        { contact.phone ? <div className="detail-contact"><i className="fas fa-phone" style={{height: '0px'}}></i> { contact.phone }</div> : null }
-                                        { contact.email ? <div className="detail-contact"><i className="far fa-envelope"></i> { contact.email }</div> : null }
-                                        { contact.facebook ? <div className="detail-contact"><i className="fab fa-facebook"></i><a href={ contact.facebook } className="social"> facebook</a></div> : null }
-                                        { contact.twitter ? <div className="detail-contact"><i class="fab fa-twitter"></i><a href={contact.twitter} className="social"> twitter</a></div> : null }
+                                        {contact.phone ? <div className="detail-contact"><i className="fas fa-phone" style={{ height: '0px' }}></i> {contact.phone}</div> : null}
+                                        {contact.email ? <div className="detail-contact"><i className="far fa-envelope"></i> {contact.email}</div> : null}
+                                        {contact.facebook ? <div className="detail-contact"><i className="fab fa-facebook"></i><a href={contact.facebook} className="social"> facebook</a></div> : null}
+                                        {contact.twitter ? <div className="detail-contact"><i class="fab fa-twitter"></i><a href={contact.twitter} className="social"> twitter</a></div> : null}
                                     </div>
                                 </div>
 

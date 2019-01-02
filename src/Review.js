@@ -471,18 +471,10 @@ export default class Review extends Component {
                                         <div id="contact" className="title-contact">
                                             Contact
                                         </div>
-                                        <div className="detail-contact">
-                                            <i class="fas fa-phone"></i> {contact.phone}
-                                        </div>
-                                        <div className="detail-contact">
-                                            <i class="far fa-envelope"></i> {contact.email}
-                                        </div>
-                                        <div className="detail-contact">
-                                            <i class="fab fa-facebook"></i><a href={contact.facebook} className="social">  facebook</a>
-                                        </div>
-                                        <div className="detail-contact">
-                                            <i class="fab fa-twitter"></i><a href={contact.twitter} className="social"> twitter</a>
-                                        </div>
+                                        { contact.phone ? <div className="detail-contact"><i className="fas fa-phone" style={{height: '0px'}}></i> { contact.phone }</div> : null }
+                                        { contact.email ? <div className="detail-contact"><i className="far fa-envelope"></i> { contact.email }</div> : null }
+                                        { contact.facebook ? <div className="detail-contact"><i className="fab fa-facebook"></i><a href={ contact.facebook } className="social"> facebook</a></div> : null }
+                                        { contact.twitter ? <div className="detail-contact"><i class="fab fa-twitter"></i><a href={contact.twitter} className="social"> twitter</a></div> : null }
                                     </div>
                                 </div>
 

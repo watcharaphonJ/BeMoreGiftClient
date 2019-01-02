@@ -58,7 +58,6 @@ export default class Searchbox extends Component {
         district.innerHTML = districtOptions;
     }
     render() {
-        console.log(this.state.province + this.state.district)
         let { category, district, province, name } = this.state
         return (
             <div className="container-search">

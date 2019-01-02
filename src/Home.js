@@ -16,9 +16,7 @@ class Home extends Component {
     }
     checkScreen = () => {
         var width = window.screen.availWidth
-        console.log("width")
         if (width > 640) {
-            console.log("test")
             return (
                 <img src={BGwindow} alt="Background" className="BGhome" />
             )

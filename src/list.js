@@ -28,9 +28,7 @@ class List extends Component {
         let { name, searchAddress, searchCategory } = this.state
         let URL = API_URL + 'query?';
         let address = ""
-        console.log(this.props.location)
         if (this.props.location.state) {
-            console.log("test destrict")
             if (this.props.location.state.district && this.props.location.state.province) {
 
                 address = this.props.location.state.province + "," + this.props.location.state.district
@@ -39,11 +37,9 @@ class List extends Component {
 
             URL += 'category=' + category + "&name=" + name + "&address=" + address;
         }
-        console.log(URL)
         fetch(URL)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 data.results.map((shop) => {
                     const location = this.state.location;
                     const result = data.results
@@ -142,8 +138,6 @@ class List extends Component {
     render() {
         const { location, center } = this.state
         var resultCate = this.state.result
-        console.log(location)
-        console.log(center)
         return (
             <div className="page-list">
                 <Menu />

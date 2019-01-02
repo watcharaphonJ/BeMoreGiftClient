@@ -44,7 +44,6 @@ export default class Review extends Component {
         this.setState(
             { rating: rate }
         )
-        console.log(rating)
     }
     checkRating = (id) => {
         let oneStar = document.getElementById("1")
@@ -127,11 +126,9 @@ export default class Review extends Component {
             fourStar.style.backgroundColor = "rgb(235, 235, 235)";
             fiveStar.style.backgroundColor = "rgb(235, 235, 235)";
         }
-        console.log(id)
     }
     postReview = () => {
         let { name, email, comment, rating } = this.state
-        console.log(name + email + comment + rating);
         if (name & email & comment & rating) {
             fetch('https://api.bemoregift.com/review/' + this.props.location.state._id, {
                 method: 'POST',
@@ -151,10 +148,7 @@ export default class Review extends Component {
             swal("Thank you!!", "for your review :)", "success").then(() => { window.location.reload() })
         } else {
             swal("Please complete the fill", "", "error");
-
         }
-
-
     }
     componentWillMount = () => {
         let ID = this.props.location.state._id
@@ -162,7 +156,6 @@ export default class Review extends Component {
         fetch("https://api.bemoregift.com/review/" + ID)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 this.setState({
                     reviews: data.results
                 })
@@ -170,7 +163,6 @@ export default class Review extends Component {
         fetch(URL)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 this.setState({
                     province: data.results.address.province,
                     district: data.results.address.district,
@@ -197,8 +189,6 @@ export default class Review extends Component {
                         callback: this.callBackMethod
                     }
                 });
-                console.log(ArrImg)
-                console.log(location)
                 this.setState({
                     location: location,
                     img: ArrImg,

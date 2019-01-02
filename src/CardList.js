@@ -21,7 +21,6 @@ export default class CardList extends Component {
         }
     }
     componentWillMount = () => {
-        console.log(this.props.detail)
         let nameDetail = this.props.detail.name
         let addressDetail = this.props.detail.address
         let star = Math.round((this.props.detail.rating.sum / this.props.detail.rating.count)) || 0
@@ -46,7 +45,6 @@ export default class CardList extends Component {
     }
     render() {
         let { name, district, province, img, ReviewStar } = this.state
-        console.log(ReviewStar)
         return (
             <div className="carddd">
                 {!this.state.fetched ?

@@ -72,17 +72,20 @@ export default class Searchbox extends Component {
                     type="text"
                     placeholder="What are you looking for?" />
                 <br />
-                <div className="select select-categories" >
-                    <select id="province" name="province" defaultValue="" onChange={this.onProvinceChange} >
-                        <option disabled="disabled" value="">Select Province</option>
-                        <option value="Khon Kaen">Khon Kaen</option>
-                    </select>
+                <div className="container-select">
+                    <div className="select select-categories" >
+                        <select id="province" name="province" defaultValue="" onChange={this.onProvinceChange} >
+                            <option disabled="disabled" value="">Select Province</option>
+                            <option value="Khon Kaen">Khon Kaen</option>
+                        </select>
 
-                </div>
-                <div className="select select-categories" >
-                    <select id="district" name="district" defaultValue="" ref={select => { this.district = select }} onChange={this.onDistrictChange}>
-                        <option disabled="disabled" value="">Select District</option>
-                    </select>
+                    </div>
+                    <div className="select select-categories select-district" >
+                        <select id="district" name="district" defaultValue="" ref={select => { this.district = select }} onChange={this.onDistrictChange}>
+                            <option disabled="disabled" value="">Select District</option>
+                        </select>
+                    </div>
+
                 </div>
 
                 <br />

@@ -24,20 +24,15 @@ class List extends Component {
             center: []
         }
     }
-    static defaultProps = {
-        center: {
-            lat: 59.95,
-            lng: 30.33
-        },
-        zoom: 11
-    };
     componentWillMount = () => {
         let { name, searchAddress, searchCategory } = this.state
         let URL = API_URL + 'query?';
         let address = ""
         console.log(this.props.location)
-        if (this.props.location.state && this.props.location.state.category) {
+        if (this.props.location.state) {
+            console.log("test destrict")
             if (this.props.location.state.district && this.props.location.state.province) {
+
                 address = this.props.location.state.province + "," + this.props.location.state.district
             }
             var category = escape(this.props.location.state.category)
@@ -52,8 +47,6 @@ class List extends Component {
                 data.results.map((shop) => {
                     const location = this.state.location;
                     const result = data.results
-
-
                     result.map((result, i) => {
                         switch (result.category) {
                             case "Food & Drink":
@@ -133,8 +126,11 @@ class List extends Component {
                                 }
                         }
                     })
-                    console.log(location)
-                    this.setState({ location: location })
+
+                    this.setState({
+                        location: location,
+                        center: location[0].location
+                    })
                 })
                 this.setState({
                     fetched: true,
@@ -146,6 +142,8 @@ class List extends Component {
     render() {
         const { location, center } = this.state
         var resultCate = this.state.result
+        console.log(location)
+        console.log(center)
         return (
             <div className="page-list">
                 <Menu />
@@ -157,8 +155,8 @@ class List extends Component {
                         <div className="bing-map">
                             <ReactBingmaps
                                 bingmapKey="AleauFqO2uD7oVweE5j9YUDa9gD37p7_x74OGzWHE9qtFwmYd_IgFkmoqiJfX3we"
-                                center={[this.state.center]}
-                                pushPins={this.state.location}
+                                center={center}
+                                pushPins={location}
                                 heading={180}
                             >
                             </ReactBingmaps>
@@ -174,9 +172,9 @@ class List extends Component {
                         </div>
 
 
-                        <div style={{ height: '100vh', width: '100%' }}>
+                        { /* <div style={{ height: '100vh', width: '100%' }}>
                             <MapContainer />
-                        </div>
+                        </div>*/}
                         <Footer />
 
                     </div>

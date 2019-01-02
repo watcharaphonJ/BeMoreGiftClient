@@ -2,11 +2,12 @@
     display: inline-block;
     height: 100%;
 }
-.carddd{
-    height: 220px;
-}
 .love{
     display: inline-block;
+}
+.review
+{
+    max-width: 60px;
 }
 
 .address{
@@ -29,7 +30,9 @@
     float: left;
     width: auto;
     height: 100%;
+    border-radius: 4px 0px 0px 4px ;
 }
+
 .detail{
     float: left;
     text-decoration: none;
@@ -58,7 +61,27 @@
     margin-left: 10px;
 }
 
+.card-detail{
+    background: rgb(245, 245, 245);
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+}
+.card-detail > img {
+    display: block;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: auto;
+}
+
 @media only screen and (max-width:440px){
+    
+.review
+{
+    max-width: 90px;
+}
     .carddd{
         margin-top: 20px;
     }
@@ -95,6 +118,20 @@
     .card-detail{
         background: rgb(245, 245, 245);
         border-radius: 5px;
+        width: 100%;
+    }
+    .card-detail > .image {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+    .card-detail > .image > img {
+        display: block;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        height: auto;
     }
     .container-detail{
         padding-top:0px;

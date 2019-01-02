@@ -13,10 +13,19 @@
     padding-left: 50px !important;
     padding-right: 50px !important;
 }
+.thumbs-wrapper {
+    text-align:center;
+
+}
+.select-district{
+    margin-left: 10px;
+}
 @media only screen and (max-width:440px){
     .input{
         width: 100%;
-        
+    }
+    .select-district{
+        margin-left: 0px;
     }
     .input-location{
         margin-bottom: 10px;
@@ -31,6 +40,7 @@
         color:#f91942;
     }
     .select-categories{
+
         text-align: left;
     }
 }

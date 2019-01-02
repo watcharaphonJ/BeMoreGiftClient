@@ -417,57 +417,37 @@ export default class Review extends Component {
                                         </div>
                                         <div className="day-opening">
                                             Monday
-                                                    <div className="time">
-                                                {[opening.monday[0], opening.monday[1]]}
-                                            </div>
+                                            <div className="time">{ opening.monday[0] !== 'closed' ? opening.monday[0] + ' - ' + opening.monday[1] : 'Closed' }</div>
                                         </div>
 
                                         <div className="day-opening">
                                             Tuesday
-                                                    <div className="time">
-                                                {[opening.tuesday[0], opening.tuesday[1]]}
-                                            </div>
+                                            <div className="time">{ opening.tuesday[0] !== 'closed' ? opening.tuesday[0] + ' - ' + opening.tuesday[1] : 'Closed' }</div>
                                         </div>
                                         <div className="day-opening">
                                             Wednesday
-                                                    <div className="time">
-                                                {[opening.wednesday[0], opening.wednesday[1]]}
-                                            </div>
+                                            <div className="time">{ opening.wednesday[0] !== 'closed' ? opening.wednesday[0] + ' - ' + opening.wednesday[1] : 'Closed' }</div>
                                         </div>
-
                                         <div className="day-opening">
                                             Thursday
-                                                    <div className="time">
-                                                {[opening.thursday[0], opening.thursday[1]]}
-                                            </div>
+                                            <div className="time">{ opening.thursday[0] !== 'closed' ? opening.thursday[0] + ' - ' + opening.thursday[1] : 'Closed' }</div>
                                         </div>
                                         <div className="day-opening">
                                             Friday
-                                                    <div className="time">
-                                                {[opening.friday[0], opening.friday[1]]}
-                                            </div>
+                                            <div className="time">{ opening.friday[0] !== 'closed' ? opening.friday[0] + ' - ' + opening.friday[1] : 'Closed' }</div>
                                         </div>
-
                                         <div className="day-opening">
                                             Saturday
-                                                    <div className="time">
-                                                {[opening.saturday[0], opening.saturday[1]]}
-                                            </div>
+                                            <div className="time">{ opening.saturday[0] !== 'closed' ? opening.saturday[0] + ' - ' + opening.saturday[1] : 'Closed' }</div>
                                         </div>
                                         <div className="day-opening">
                                             Sunday
-                                                    <div className="time">
-                                                {[opening.sunday[0], opening.sunday[1]]}
-                                            </div>
+                                            <div className="time">{ opening.sunday[0] !== 'closed' ? opening.sunday[0] + ' - ' + opening.sunday[1] : 'Closed' }</div>
                                         </div>
-
                                         <div className="day-opening">
                                             Holidays
-                                                    <div className="time">
-                                                {[opening.holidays[0], opening.holidays[1]]}
-                                            </div>
+                                            <div className="time">{ opening.holidays[0] !== 'closed' ? opening.holidays[0] + ' - ' + opening.holidays[1] : 'Closed' }</div>
                                         </div>
-
                                     </div>
                                     <div className="box-contact">
                                         <div id="contact" className="title-contact">

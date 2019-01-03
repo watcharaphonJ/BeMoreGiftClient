@@ -1,19 +1,56 @@
 .footer{
     margin-top: 100px;
-    background-color: #f1f1f1;
+    background-color: #fff;
     padding: 3rem 1.5rem 6rem;
+    border-top: 1px solid rgba(0,0,0,0.09);
+    font-size: 16px;
 }
-
-
+.container-footer{
+    width: 100%;
+    padding: 20px;
+}
+.logo-footer{
+    margin-bottom:20px;
+}
+.about{
+    width: 40%;
+    float: left;
+}
+.contact{
+    
+    float:right;
+    bottom: 0;
+}
+.header-helpful{
+    color: #333;
+    font-size: 21px;
+    margin-bottom: 25px;
+}
 @media only screen and (max-width:440px){
     .box-footer{
         justify-content: space-between;
     }
+    .footer{
+        margin-top: 0;
+    }
+
     .logo-footer{
-        width: 40%;
+        width: 15%;
+    }
+    .describe{
+        font-size: 16px;
+    line-height: 29px;
     }
     .header-helpful{
         font-size: 21px;
         color: #333;
+    }
+    .contact{
+        margin-bottom:30px;
+        float: none;
+    }
+    
+    .about{
+        width: 100%;
     }
 }

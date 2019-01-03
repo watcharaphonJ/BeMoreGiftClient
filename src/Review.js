@@ -129,7 +129,8 @@ export default class Review extends Component {
     }
     postReview = () => {
         let { name, email, comment, rating } = this.state
-        if (name & email & comment & rating) {
+        console.log(name, email, comment, rating)
+        if (name != "" & email != "" & comment != "" & rating != "") {
             fetch('https://api.bemoregift.com/review/' + this.props.location.state._id, {
                 method: 'POST',
                 headers: {
@@ -144,8 +145,8 @@ export default class Review extends Component {
                 })
             })
                 .then(response => response.json())
-                .then(data => alert(data.results));
-            swal("Thank you!!", "for your review :)", "success").then(() => { window.location.reload() })
+                .then(data => swal("Thank you!!", "for your review :)", "success").then(() => { window.location.reload() }))
+
         } else {
             swal("Please complete the fill", "", "error");
         }

@@ -35,8 +35,8 @@ class Home extends Component {
                     {this.checkScreen()}
                     <div className="container-search-box">
                         <div className="text-top-searchbox">
-                            <div>Find Nearby Attractions </div>
-                            <div className="text2" >  Find the perfect gift for your loved ones.</div>
+                            <div className="title">Find Nearby Attractions</div>
+                            <div className="sub-title">Find the perfect gift for your loved ones.</div>
                         </div>
                         <Searchbox />
                     </div>

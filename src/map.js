@@ -1,5 +1,6 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
+import './css/map.css'
 const mapStyles = {
     width: '100%',
     height: '100%'
@@ -25,55 +26,60 @@ var icons = {
         icon: iconBase + 'parking_lot_maps.png'
     },
 };
+var points = []
+var infowindow = <div>test</div>
 export class MapContainer extends Component {
-
-
     constructor(props) {
         super(props)
     }
     onMarkerClick = () => {
         alert("test")
     }
+    componentWillMount = () => {
+        var location = this.props.state
+        location.map((location, i) => {
+            points.push([
+                location.name,
+                location.lat,
+                location.lng, i
+            ])
+        })
+        console.log(points)
+    }
+    componentDidMount = () => {
+        this.initMap()
+    }
+    initMap = () => {
+        console.log(points)
+        var iniLat = points[0][1]
+        var iniLng = points[0][2]
+        var myLatLng = { lat: iniLat, lng: iniLng };
 
+        var map = new window.google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: myLatLng
+        });
+
+        var marker, i;
+        console.log(points)
+
+        for (i = 0; i < points.length; i++) {
+            marker = new window.google.maps.Marker({
+                position: new window.google.maps.LatLng(points[i][1], points[i][2]),
+                map: map
+            });
+        }
+    }
     render() {
 
-        var bounds = new this.props.google.maps.LatLngBounds();
-        var points = [
-            { lat: 42.02, lng: -77.01 },
-            { lat: 42.03, lng: -77.02 },
-            { lat: 41.03, lng: -77.04 },
-            { lat: 42.05, lng: -77.02 }
-        ]
 
-        for (var i = 0; i < points.length; i++) {
-            bounds.extend(points[i]);
-        }
         return (
-            <Map google={this.props.google}
-                zoom={14}
-                style={mapStyles}
-                initialCenter={{
-                    lat: 42.39,
-                    lng: -72.52
-                }}
+            <div className="google-map" id="map">
 
-            >
-                <Marker
-                    title={'The marker`s title will appear as a tooltip.'}
-                    name={'SOMA'}
-                    position={{ lat: 37.778519, lng: -122.405640 }}
+            </div>
 
-                />
-                <Marker
-                    name={'Dolores park'}
-                    position={{ lat: 37.759703, lng: -122.428093 }}
-                    onClick={this.onMarkerClick} />
-                <Marker />
-            </Map>
         );
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: ("AIzaSyBbkRGhengln60xT_oFyPPOg1HV7OwWHuQ")
-})(MapContainer)
+export default MapContainer

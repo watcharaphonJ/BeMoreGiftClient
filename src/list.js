@@ -34,100 +34,25 @@ class List extends Component {
                 address = this.props.location.state.province + "," + this.props.location.state.district
             }
             var category = escape(this.props.location.state.category)
-            console.log(this.props.location.state.category)
-
             URL += 'category=' + category + "&name=" + name + "&address=" + address;
         }
-        console.log(URL)
         fetch(URL)
             .then(response => response.json())
             .then(data => {
                 data.results.map((shop) => {
                     const location = this.state.location;
+                    var locations = []
                     const result = data.results
-                    result.map((result, i) => {
-                        switch (result.category) {
-                            case "Food & Drink":
-                                {
-                                    location.push({
-                                        "location": [shop.location.lat, shop.location.lng],
-                                        "option": { title: shop.name, description: '...', color: "orange" },
-                                        "addHandler": {
-                                            "type": "click",
-                                            callback: this.callBackMethod
-                                        }
-                                    })
-                                    break;
-                                }
-                            case "Appliance":
-                                {
-                                    location.push({
-                                        "location": [shop.location.lat, shop.location.lng],
-                                        "option": { title: shop.name, description: '...', color: "red" },
-                                        "addHandler": {
-                                            "type": "click",
-                                            callback: this.callBackMethod
-                                        }
-                                    })
-                                    break;
-                                }
-                            case "Decoration":
-                                {
-                                    location.push({
-                                        "location": [shop.location.lat, shop.location.lng],
-                                        "option": { title: shop.name, description: '...', color: "red" },
-                                        "addHandler": {
-                                            "type": "click",
-                                            callback: this.callBackMethod
-                                        }
-                                    })
-                                    break;
-                                }
-                            case "Costume":
-                                {
-                                    location.push({
-                                        "location": [shop.location.lat, shop.location.lng],
-                                        "option": { title: shop.name, description: '...', color: "red" },
-                                        "addHandler": {
-                                            "type": "click",
-                                            callback: this.callBackMethod
-                                        }
-                                    })
-                                    break;
-                                }
-                            case "Accessories":
-                                {
-                                    location.push({
-                                        "location": [shop.location.lat, shop.location.lng],
-                                        "option": { title: shop.name, description: '...', color: "red" },
-                                        "addHandler": {
-                                            "type": "click",
-                                            callback: this.callBackMethod
-                                        }
-                                    })
-                                    break;
-                                }
-                            case "etc":
-                                {
-                                    location.push({
-                                        "location": [shop.location.lat, shop.location.lng],
-                                        "option": { title: shop.name, description: '...', color: "red" },
-                                        "addHandler": {
-                                            "type": "click",
-                                            callback: this.callBackMethod
-                                        }
-                                    })
-                                    break;
-                                }
-                            default:
-                                {
-                                }
-                        }
+                    console.log(result)
+                    result.map((data, i) => {
+                        locations.push({
+                            name: data.name,
+                            lat: data.location.lat,
+                            lng: data.location.lng
+                        })
                     })
-
                     this.setState({
-                        location: location,
-                        center: location[0].location
+                        location: locations
                     })
                 })
                 this.setState({
@@ -135,10 +60,10 @@ class List extends Component {
                     result: data.results
                 });
             });
-
     }
     render() {
         const { location, center } = this.state
+        console.log(location)
         var resultCate = this.state.result
         return (
             <div className="page-list">
@@ -149,13 +74,7 @@ class List extends Component {
                     <div>
 
                         <div className="bing-map">
-                            <ReactBingmaps
-                                bingmapKey="AleauFqO2uD7oVweE5j9YUDa9gD37p7_x74OGzWHE9qtFwmYd_IgFkmoqiJfX3we"
-                                center={center}
-                                pushPins={location}
-                                heading={180}
-                            >
-                            </ReactBingmaps>
+                            <MapContainer state={location} />
                         </div>
                         <div className="container-list">
                             {resultCate.map((shop, i) => {
@@ -165,9 +84,6 @@ class List extends Component {
                                     </Link>
                                 );
                             })}
-                        </div>
-                        <div style={{ height: '100vh', width: '100%' }}>
-                            <MapContainer />
                         </div>
                         <Footer />
 

@@ -14,9 +14,10 @@ import twoStar from "./img/2.png"
 import threeStar from "./img/3.png"
 import fourStar from "./img/4.png"
 import fiveStar from "./img/5.png"
-import Moment from 'react-moment';
 import swal from 'sweetalert';
+import MapContainer from './map'
 const API_URL = process.env.REACT_APP_API_URL;
+let locations = []
 export default class Review extends Component {
     constructor(props) {
         super(props)
@@ -152,7 +153,15 @@ export default class Review extends Component {
         }
     }
     componentWillMount = () => {
+
         let ID = this.props.location.state._id
+        let location = this.props.location.state
+
+        locations.push({
+            name: location.name,
+            lat: location.location.lat,
+            lng: location.location.lng
+        })
         let URL = API_URL + "shop/" + ID
         fetch("https://api.bemoregift.com/review/" + ID)
             .then(response => response.json())
@@ -220,7 +229,7 @@ export default class Review extends Component {
         return [year, month, day].join('-');
     }
     render() {
-        let { reviews, province, district, category, contact, describe, name, Arrmenu, location, shop, img, opening } = this.state
+        let { reviews, province, district, category, contact, describe, name, Arrmenu, shop, img, opening } = this.state
         let imgUrl = "https://api.bemoregift.com/static/";
 
 
@@ -290,15 +299,8 @@ export default class Review extends Component {
                                     </div>
                                     <section id="location">
                                         <div className="header-overview">Location</div>
-                                        <div className="bing-map">
-                                            <ReactBingmaps
-                                                bingmapKey="AleauFqO2uD7oVweE5j9YUDa9gD37p7_x74OGzWHE9qtFwmYd_IgFkmoqiJfX3we"
-                                                center={[location[0].location[0], location[0].location[1]]}
-                                                pushPins={this.state.location}
-                                                heading={300}
-                                                zoom={18}
-                                            >
-                                            </ReactBingmaps>
+                                        <div className="bing-map" style={{ borderRadius: "5px" }}>
+                                            <MapContainer state={locations} />
                                         </div>
                                     </section>
                                     <section id="review">

@@ -75,7 +75,7 @@ class Home extends Component {
 
                             <Link className="box-browse" to={{ pathname: "/list", state: { category: "Accessories", search: true } }}>
                                 <div >
-                                    <i class="fas fa-ring"></i>
+                                    <i class="far fa-gem"></i>
                                     <div>Accessories</div>
                                 </div>
                             </Link>

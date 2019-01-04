@@ -51,6 +51,12 @@
     font-size: 42px;
     height: 40px;
     display: inline-block;
+    margin-top: 19px;
+}
+.far{
+    font-size: 42px;
+    height: 40px;
+    display: inline-block;
     margin-top: 20px;
 }
 .BGhome{
@@ -101,6 +107,9 @@
 .fas{
     font-size:30px;
 }
+.far{
+    font-size: 30px;
+}
 .container-browse-box{
     padding:20px;
     width: calc(100% + 20px);
@@ -118,7 +127,7 @@
     text-align: center;
     font-size: 30px;
     font-weight: 300;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 }
 .BGhome{
     height: 500px;

@@ -34,9 +34,11 @@ class List extends Component {
                 address = this.props.location.state.province + "," + this.props.location.state.district
             }
             var category = escape(this.props.location.state.category)
+            console.log(this.props.location.state.category)
 
             URL += 'category=' + category + "&name=" + name + "&address=" + address;
         }
+        console.log(URL)
         fetch(URL)
             .then(response => response.json())
             .then(data => {
@@ -164,11 +166,9 @@ class List extends Component {
                                 );
                             })}
                         </div>
-
-
-                        { /* <div style={{ height: '100vh', width: '100%' }}>
+                        <div style={{ height: '100vh', width: '100%' }}>
                             <MapContainer />
-                        </div>*/}
+                        </div>
                         <Footer />
 
                     </div>

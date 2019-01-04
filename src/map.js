@@ -4,7 +4,29 @@ const mapStyles = {
     width: '100%',
     height: '100%'
 };
+var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+var icons = {
+    food: {
+        icon: iconBase + 'parking_lot_maps.png'
+    },
+    Appliance: {
+        icon: iconBase + 'library_maps.png'
+    },
+    Decoration: {
+        icon: iconBase + 'info-i_maps.png'
+    },
+    Costume: {
+        icon: iconBase + 'parking_lot_maps.png'
+    },
+    Accessories: {
+        icon: iconBase + 'parking_lot_maps.png'
+    },
+    etc: {
+        icon: iconBase + 'parking_lot_maps.png'
+    },
+};
 export class MapContainer extends Component {
+
 
     constructor(props) {
         super(props)

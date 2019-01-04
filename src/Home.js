@@ -55,13 +55,13 @@ class Home extends Component {
                             <Link className="box-browse" to={{ pathname: "/list", state: { category: "Appliance", search: true } }}>
                                 <div>
 
-                                    <i class="fas fa-bed"></i>
+                                    <i class="fas fa-shopping-basket"></i>
                                     <div>Appliance</div>
                                 </div>
                             </Link>
                             <Link className="box-browse" to={{ pathname: "/list", state: { category: "Decoration", search: true } }}>
                                 <div >
-                                    <i class="fas fa-shopping-cart"></i>
+                                    <i class="far fa-gem"></i>
                                     <div>Decoration</div>
                                 </div>
                             </Link>
@@ -75,7 +75,7 @@ class Home extends Component {
 
                             <Link className="box-browse" to={{ pathname: "/list", state: { category: "Accessories", search: true } }}>
                                 <div >
-                                    <i class="fas fa-guitar"></i>
+                                    <i class="fas fa-ring"></i>
                                     <div>Accessories</div>
                                 </div>
                             </Link>

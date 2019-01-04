@@ -5,11 +5,17 @@ export default class Searchbox extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            category: "",
             name: "",
             province: "",
-            district: ""
+            district: "",
+            category: ""
         }
+    }
+    chkCategories = (e) => {
+        this.setState({
+            category: e.target.value
+        })
+
     }
     onDistrictChange = (e) => {
         this.setState({
@@ -18,8 +24,8 @@ export default class Searchbox extends Component {
     }
     onProvinceChange = (e) => {
         this.setState({
-            province: e.target.value
-            , district: "Muang Khon Kaen"
+            province: e.target.value,
+            district: "Muang Khon Kaen"
         })
         let province = e.target.value;
         let district = this.district;
@@ -61,44 +67,47 @@ export default class Searchbox extends Component {
         let { category, district, province, name } = this.state
         return (
             <div className="container-search">
-                <input
-                    onChange={e => {
-                        this.setState({
-                            things: e.target.value
-                        });
-                    }}
-                    className="input input-location"
-                    type="text"
-                    placeholder="What are you looking for?" />
-                <div className="container-select">
-                    <div className="select select-categories" >
-                        <select id="province" name="province" defaultValue="" onChange={this.onProvinceChange} >
-                            <option disabled="disabled" value="">Select Province</option>
-                            <option value="Khon Kaen">Khon Kaen</option>
-                        </select>
+                <div className="main-search-input height-input">
+                    <input
+                        onChange={e => {
+                            this.setState({
+                                things: e.target.value
+                            });
+                        }}
+                        className=" input-location"
+                        type="text"
+                        placeholder="What are you looking for?" />
+                    <div className="container-select height-input">
+                        <div className="select select-location" >
+                            <select className="province" style={{ borderColor: "transparent", color: "#808080" }} id="province" name="province" defaultValue="" onChange={this.onProvinceChange} >
+                                <option disabled="disabled" value="">Select Province</option>
+                                <option value="Khon Kaen">Khon Kaen</option>
+                            </select>
+                        </div>
+                        <div className="select select-location select-district" >
+                            <select className="district" style={{ borderColor: "transparent", color: "#808080" }} id="district" name="district" defaultValue="" ref={select => { this.district = select }} onChange={this.onDistrictChange}>
+                                <option disabled="disabled" value="">Select District</option>
+                            </select>
+                        </div>
                     </div>
-                    <div className="select select-categories select-district" >
-                        <select id="district" name="district" defaultValue="" ref={select => { this.district = select }} onChange={this.onDistrictChange}>
-                            <option disabled="disabled" value="">Select District</option>
-                        </select>
+                    <div className="select select-categories height-input" >
+                        <select className="select-cate" style={{ borderColor: "transparent", color: "#808080" }} onClick={
+                            this.chkCategories
+                        }>
+                            <option value="" > All Categories </option>
+                            <option value="Food & Drink" > Food & Drink </option>
+                            <option value="Appliance" > Appliance </option>
+                            <option value="Decoration" > Decoration </option>
+                            <option value="Costume" > Costume </option>
+                            <option value="Accessories" > Accessories </option>
+                            <option value="etc." > etc. </option>
+                        </select >
+                    </div>
+                    <div className="button-search">
+                        <Link to={{ pathname: "/list", state: { category, name, district, province } }} className="button is-danger is-rounded" >Search</Link>
                     </div>
                 </div>
-                <div className="select select-categories" >
-                    <select onClick={
-                        this.chkCategories
-                    }>
-                        <option value="" > All Categories </option>
-                        <option value="Food & Drink" > Food & Drink </option>
-                        <option value="Appliance" > Appliance </option>
-                        <option value="Decoration" > Decoration </option>
-                        <option value="Costume" > Costume </option>
-                        <option value="Accessories" > Accessories </option>
-                        <option value="etc." > etc. </option>
-                    </select >
-                </div>
-                <div className="button-search">
-                    <Link to={{ pathname: "/list", state: { category, name, district, province } }} className="button is-danger is-rounded" >Search</Link>
-                </div>
+
             </div>
 
         )

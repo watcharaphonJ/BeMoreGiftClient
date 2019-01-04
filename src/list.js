@@ -25,6 +25,7 @@ class List extends Component {
         }
     }
     componentWillMount = () => {
+        console.log(this.props)
         let { name, searchAddress, searchCategory } = this.state
         let URL = API_URL + 'query?';
         let address = ""

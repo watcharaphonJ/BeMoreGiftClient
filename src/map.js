@@ -1,33 +1,34 @@
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import React, { Component } from 'react';
 import './css/map.css'
+import marker from './img/0.png'
 const mapStyles = {
     width: '100%',
     height: '100%'
 };
-var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+var iconURLPrefix = 'http://maps.google.com/mapfiles/ms/icons/';
 var icons = {
     food: {
-        icon: iconBase + 'parking_lot_maps.png'
+        icon: iconURLPrefix + 'parking_lot_maps.png'
     },
     Appliance: {
-        icon: iconBase + 'library_maps.png'
+        icon: iconURLPrefix + 'library_maps.png'
     },
     Decoration: {
-        icon: iconBase + 'info-i_maps.png'
+        icon: iconURLPrefix + 'info-i_maps.png'
     },
     Costume: {
-        icon: iconBase + 'parking_lot_maps.png'
+        icon: iconURLPrefix + 'parking_lot_maps.png'
     },
     Accessories: {
-        icon: iconBase + 'parking_lot_maps.png'
+        icon: iconURLPrefix + 'parking_lot_maps.png'
     },
     etc: {
-        icon: iconBase + 'parking_lot_maps.png'
+        icon: iconURLPrefix + 'parking_lot_maps.png'
     },
 };
 var points = []
-var infowindow = <div>test</div>
+
 export class MapContainer extends Component {
     constructor(props) {
         super(props)
@@ -49,6 +50,8 @@ export class MapContainer extends Component {
     componentDidMount = () => {
         this.initMap()
     }
+
+
     initMap = () => {
         console.log(points)
         var iniLat = points[0][1]
@@ -63,10 +66,20 @@ export class MapContainer extends Component {
         var marker, i;
         console.log(points)
 
+        var image = {
+            url: '/img/0.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new window.google.maps.Size(20, 32),
+            // The origin for this image is (0, 0).
+            origin: new window.google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new window.google.maps.Point(0, 32)
+        };
         for (i = 0; i < points.length; i++) {
-            marker = new window.google.maps.Marker({
+            var marker = new window.google.maps.Marker({
                 position: new window.google.maps.LatLng(points[i][1], points[i][2]),
-                map: map
+                map: map,
+                title: points[i][0]
             });
         }
     }

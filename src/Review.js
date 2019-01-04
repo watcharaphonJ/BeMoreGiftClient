@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Menu from './menu'
 import './css/review.css'
 import pic from './img/bgphone.jpg'
-import { ReactBingmaps } from 'react-bingmaps';
 import { Link } from 'react-router-dom'
 import Footer from './footer'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
@@ -18,6 +17,13 @@ import swal from 'sweetalert';
 import MapContainer from './map'
 const API_URL = process.env.REACT_APP_API_URL;
 let locations = []
+var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+};
 export default class Review extends Component {
     constructor(props) {
         super(props)
@@ -27,7 +33,8 @@ export default class Review extends Component {
             category: "",
             contact: "",
             describe: "",
-            shop: "",
+            shop: ""
+            , star: "",
             Arrmenu: [],
             location: [],
             name: "",
@@ -37,7 +44,8 @@ export default class Review extends Component {
             img: [],
             fetched: false,
             opening: [],
-            reviews: []
+            reviews: [],
+            comment: ""
         }
     }
     changeRating = (rate) => {
@@ -173,6 +181,8 @@ export default class Review extends Component {
         fetch(URL)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
+                let stars = Math.round((data.results.rating.sum / data.results.rating.count)) || 0
                 this.setState({
                     province: data.results.address.province,
                     district: data.results.address.district,
@@ -183,6 +193,8 @@ export default class Review extends Component {
                     Arrmenu: data.results.menu,
                     opening: data.results.opening,
                     ID: data.results._id
+                    , star: stars,
+                    comment: data.results.rating.count
                 });
                 let ArrImg = []
                 data.results.images.map((data, i) => {
@@ -229,16 +241,17 @@ export default class Review extends Component {
         return [year, month, day].join('-');
     }
     render() {
-        let { reviews, province, district, category, contact, describe, name, Arrmenu, shop, img, opening } = this.state
+        let { reviews, comment, star, province, district, category, contact, describe, name, Arrmenu, shop, img, opening } = this.state
         let imgUrl = "https://api.bemoregift.com/static/";
 
-
+        console.log(reviews)
         return (
             <div>
                 <Menu />
                 {!this.state.fetched ? <div className="loading"><i class="fas fa-spinner "></i></div> :
                     <div className="container-review">
                         <div className="Divcarousel">
+
                             <Carousel
                                 autoPlay={true}
                                 infiniteLoop={true}
@@ -260,17 +273,19 @@ export default class Review extends Component {
                                 <div className="review-left">
                                     <div className="title-bar">
                                         <div className="titlereview">{shop}</div>
+                                        <div className="listing-tag">{category}</div>
                                         <span>
                                             <div className="listing-location"><i class="fas fa-map-marker-alt"></i>
                                                 {"    " + district + ", " + province}
                                             </div>
                                         </span>
+                                        <img className=" headerStar" src={this.starPath(star)} /> <div className="count-comment">({comment} reviews)</div>
                                     </div>
 
                                     <div className="title-overview">
                                         <div className="listing-nav-container">
                                             <div className="listing-nav">
-                                                <AnchorLink className="anchorLink" href='#overview'>Overview </AnchorLink>
+                                                <AnchorLink className="anchorLink Overview" href='#overview'>Overview </AnchorLink>
                                                 <AnchorLink className="anchorLink" href='#pricing'>Pricing</AnchorLink>
                                                 <AnchorLink className="anchorLink" href='#location'>Location</AnchorLink>
                                                 <AnchorLink className="anchorLink" href='#review'>Reviews</AnchorLink>

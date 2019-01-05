@@ -78,20 +78,20 @@ export default class Searchbox extends Component {
                         type="text"
                         placeholder="What are you looking for?" />
                     <div className="container-select height-input">
-                        <div className="select select-location" >
-                            <select className="province" style={{ borderColor: "transparent", color: "#808080" }} id="province" name="province" defaultValue="" onChange={this.onProvinceChange} >
+                        <div className="select select-location" style={{ width: '50%', height: '100%' }}>
+                            <select className="province" style={{ borderColor: "transparent", color: "#808080", width: "100%", height: "100%" }} id="province" name="province" defaultValue="" onChange={this.onProvinceChange} >
                                 <option disabled="disabled" value="">Select Province</option>
                                 <option value="Khon Kaen">Khon Kaen</option>
                             </select>
                         </div>
-                        <div className="select select-location select-district" >
-                            <select className="district" style={{ borderColor: "transparent", color: "#808080" }} id="district" name="district" defaultValue="" ref={select => { this.district = select }} onChange={this.onDistrictChange}>
+                        <div className="select select-location select-district" style={{ width: 'calc(50% - 10px)', height: '100%' }}>
+                            <select className="district" style={{ borderColor: "transparent", color: "#808080", width: "100%", height: "100%" }} id="district" name="district" defaultValue="" ref={select => { this.district = select }} onChange={this.onDistrictChange}>
                                 <option disabled="disabled" value="">Select District</option>
                             </select>
                         </div>
                     </div>
-                    <div className="select select-categories height-input" >
-                        <select className="select-cate" style={{ borderColor: "transparent", color: "#808080" }} onClick={
+                    <div className="select select-categories height-input" style={{ height: '100%'}}>
+                        <select className="select-cate" style={{ borderColor: "transparent", color: "#808080", width: "100%", height: "100%" }} onClick={
                             this.chkCategories
                         }>
                             <option value="" > All Categories </option>

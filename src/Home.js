@@ -45,41 +45,41 @@ class Home extends Component {
                             Browse Categories
                          </div>
                         <div className="container-browse-box">
-                            <Link className="box-browse" to={{ pathname: "/list", state: { category: "Food & Drink", search: true } }}>
-                                <div >
+                            <Link className="box-browse" to={"/list?category=" + escape("Food & Drink")}>
+                                <div>
 
                                     <i class="fas fa-utensils"></i>
                                     <div>Food & Drink</div>
                                 </div>
                             </Link>
-                            <Link className="box-browse" to={{ pathname: "/list", state: { category: "Appliance", search: true } }}>
+                            <Link className="box-browse" to={"/list?category=Appliance"}>
                                 <div>
 
                                     <i class="fas fa-shopping-basket"></i>
                                     <div>Appliance</div>
                                 </div>
                             </Link>
-                            <Link className="box-browse" to={{ pathname: "/list", state: { category: "Decoration", search: true } }}>
+                            <Link className="box-browse" to={"/list?category=Decoration"}>
                                 <div >
                                     <i class="far fa-gem"></i>
                                     <div>Decoration</div>
                                 </div>
                             </Link>
 
-                            <Link className="box-browse" to={{ pathname: "/list", state: { category: "Costume", search: true } }}>
+                            <Link className="box-browse" to={"/list?category=Costume"}>
                                 <div>
                                     <i class="fas fa-tshirt"></i>
                                     <div>Costume</div>
                                 </div>
                             </Link>
 
-                            <Link className="box-browse" to={{ pathname: "/list", state: { category: "Accessories", search: true } }}>
+                            <Link className="box-browse" to={"/list?category=Accessories"}>
                                 <div >
                                     <i class="far fa-gem"></i>
                                     <div>Accessories</div>
                                 </div>
                             </Link>
-                            <Link className="box-browse" to={{ pathname: "/list", state: { category: "Etc", search: true } }}>
+                            <Link className="box-browse" to={"/list?category=etc"}>
                                 <div >
                                     <i class="fas fa-dumbbell"></i>
                                     <div>etc.</div>

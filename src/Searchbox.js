@@ -65,13 +65,15 @@ export default class Searchbox extends Component {
     }
     render() {
         let { category, district, province, name } = this.state
+
+        console.log(name)
         return (
             <div className="container-search">
                 <div className="main-search-input height-input">
                     <input
                         onChange={e => {
                             this.setState({
-                                things: e.target.value
+                                name: e.target.value
                             });
                         }}
                         className=" input-location"
@@ -104,7 +106,7 @@ export default class Searchbox extends Component {
                         </select >
                     </div>
                     <div className="button-search">
-                        <Link to={{ pathname: "/list", state: { category, name, district, province } }} className="button is-danger is-rounded" >Search</Link>
+                        <Link to={"/list?name=" + name + "&district=" + district + "&province=" + province + "&category=" + category} className="button is-danger is-rounded" >Search</Link>
                     </div>
                 </div>
 

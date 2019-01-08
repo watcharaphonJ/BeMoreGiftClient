@@ -12,6 +12,7 @@ const API_CATEGORY = process.env.REACT_APP_API_GET_CATEGORY
 
 class List extends Component {
     constructor(props) {
+
         super(props);
         this.state = {
             fetched: false,
@@ -25,18 +26,9 @@ class List extends Component {
         }
     }
     componentWillMount = () => {
-        console.log(this.props)
-        let { name, searchAddress, searchCategory } = this.state
-        let URL = API_URL + 'query?';
-        let address = ""
-        if (this.props.location.state) {
-            if (this.props.location.state.district && this.props.location.state.province) {
-
-                address = this.props.location.state.province + "," + this.props.location.state.district
-            }
-            var category = escape(this.props.location.state.category)
-            URL += 'category=' + category + "&name=" + name + "&address=" + address;
-        }
+        var params = (this.props.location.search)
+        let URL = API_URL + "query" + params;
+        console.log(URL)
         fetch(URL)
             .then(response => response.json())
             .then(data => {
@@ -44,7 +36,6 @@ class List extends Component {
                     const location = this.state.location;
                     var locations = []
                     const result = data.results
-                    console.log(result)
                     result.map((data, i) => {
                         locations.push({
                             name: data.name,
@@ -63,8 +54,7 @@ class List extends Component {
             });
     }
     render() {
-        const { location, center } = this.state
-        console.log(location)
+        const { location } = this.state
         var resultCate = this.state.result
         return (
             <div className="page-list">

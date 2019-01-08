@@ -87,6 +87,7 @@
     .input-location{
         margin-bottom: 10px;
         width:auto;
+        width: 100%;
     }
     
 .select-location{

@@ -22,6 +22,12 @@
     display: inline-block;
     margin-left: 8px;
 }
+.headerStar{
+    display: inline-block;
+}
+.Container-star-review{
+    margin-bottom: 20px;
+}
 .star{
     display: inline-block;
     background-color: rgb(235, 235, 235);
@@ -299,9 +305,15 @@
     margin-left: 8px;
 }
 @media only screen and (max-width:440px){
+    .headerStar{
+        display: inline-block;
+    }
     .carousel-slider{
         width: 100%!important;
         max-height: 220px;
+    }
+    .count-comment{
+        margin-left: 9px;
     }
     .anchorLink{
         border-bottom: 1px solid #e0e0e0;

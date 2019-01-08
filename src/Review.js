@@ -24,6 +24,7 @@ var settings = {
     slidesToShow: 1,
     slidesToScroll: 1
 };
+
 export default class Review extends Component {
     constructor(props) {
         super(props)
@@ -160,16 +161,44 @@ export default class Review extends Component {
             swal("Please complete the fill", "", "error");
         }
     }
-    componentWillMount = () => {
+    initMap = (points) => {
+        var iniLat = points.location.lat
+        var iniLng = points.location.lng
+        var myLatLng = { lat: iniLat, lng: iniLng };
+        console.log(myLatLng, points.name)
+        var map = new window.google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: myLatLng
+        });
+        var i;
+        var image = {
+            url: '/img/0.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new window.google.maps.Size(20, 32),
+            // The origin for this image is (0, 0).
+            origin: new window.google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new window.google.maps.Point(0, 32)
+        };
+        var marker = new window.google.maps.Marker({
+            position: new window.google.maps.LatLng(iniLat, iniLng),
+            map: map,
+            icon: 'img/0.png',
+            title: points.name
+        });
+    }
 
+    componentWillMount = () => {
         let ID = this.props.location.state._id
         let location = this.props.location.state
-
+        console.log(location)
         locations.push({
             name: location.name,
             lat: location.location.lat,
             lng: location.location.lng
         })
+
+        this.initMap(location)
         let URL = API_URL + "shop/" + ID
         fetch("https://api.bemoregift.com/review/" + ID)
             .then(response => response.json())
@@ -202,15 +231,6 @@ export default class Review extends Component {
                         img: data
                     })
                 })
-                let location = []
-                location.push({
-                    "location": [data.results.location.lat, data.results.location.lng],
-                    "option": { title: data.results.name, description: '...' },
-                    "addHandler": {
-                        "type": "click",
-                        callback: this.callBackMethod
-                    }
-                });
                 this.setState({
                     location: location,
                     img: ArrImg,
@@ -279,7 +299,10 @@ export default class Review extends Component {
                                                 {"    " + district + ", " + province}
                                             </div>
                                         </span>
-                                        <img className=" headerStar" src={this.starPath(star)} /> <div className="count-comment">({comment} reviews)</div>
+                                        <div className="Container-star-review">
+                                            <img className=" headerStar" src={this.starPath(star)} />
+                                            <div className="count-comment">({comment} reviews)</div>
+                                        </div>
                                     </div>
 
                                     <div className="title-overview">
@@ -315,7 +338,8 @@ export default class Review extends Component {
                                     <section id="location">
                                         <div className="header-overview">Location</div>
                                         <div className="bing-map" style={{ borderRadius: "5px" }}>
-                                            <MapContainer state={locations} />
+                                            <div className="google-map" id="map">
+                                            </div>
                                         </div>
                                     </section>
                                     <section id="review">

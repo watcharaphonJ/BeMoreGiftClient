@@ -63,9 +63,7 @@ export class MapContainer extends Component {
             center: myLatLng
         });
 
-        var marker, i;
-        console.log(points)
-
+        var i;
         var image = {
             url: '/img/0.png',
             // This marker is 20 pixels wide by 32 pixels high.
@@ -79,9 +77,13 @@ export class MapContainer extends Component {
             var marker = new window.google.maps.Marker({
                 position: new window.google.maps.LatLng(points[i][1], points[i][2]),
                 map: map,
+                icon: 'img/0.png',
                 title: points[i][0]
             });
         }
+        marker.addListener('click', function () {
+            window.location.href = "https://google.com/maps/search/?api=1&query=" + points[0][1] + points[0][2]
+        });
     }
     render() {
 

@@ -6,6 +6,9 @@ import Home from './Home'
 import Review from './Review'
 import Contact from './contact'
 import Blog from './blog'
+import CK from './ck'
+import KK from './kk'
+import MH from './mh'
 
 class App extends Component {
   render() {
@@ -16,6 +19,9 @@ class App extends Component {
         <Route exact path="/review" component={Review} />
         <Route exact path="/contact" component={Contact} />
         <Route exact path="/blog" component={Blog} />
+        <Route exact path="/blog/ck" component={CK} />
+        <Route exact path="/blog/kk" component={KK} />
+        <Route exact path="/blog/mh" component={MH} />
       </div>
     )
   }

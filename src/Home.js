@@ -3,10 +3,12 @@ import Menu from './menu';
 import './css/home.css'
 import Searchbox from './Searchbox'
 import Footer from './footer'
-import BGwindow from './img/bgwindow.jpg'
 import bgphone from './img/bgphone.jpg'
-
 import { Link } from "react-router-dom";
+import ck from './img/ck-por.jpg'
+import kk from './img/kk-por.jpg'
+import mh from './img/mh-por.jpg'
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -18,7 +20,7 @@ class Home extends Component {
         var width = window.screen.availWidth
         if (width > 640) {
             return (
-                <img src={BGwindow} alt="Background" className="BGhome" />
+                <img src={bgphone} alt="Background" className="BGhome" />
             )
         }
         else {
@@ -85,6 +87,53 @@ class Home extends Component {
                                     <div>etc.</div>
                                 </div>
                             </Link>
+                        </div>
+                    </div>
+                    <div className="popular-container">
+                        <div className="title-popular">
+                            Popular Blog
+                        </div>
+                        <div className="post-popular-container">
+                            <Link to={"/blog/ck"} className="box-popular">
+                                <div className="box-compact-item-container">
+                                    <img className="img-popular-blog" src={ck} />
+                                    <div className="blog-item-tag">จัดอันดับ</div>
+                                    <div className="blog-compact-item-content">
+                                        <div className="blog-item-date">December 22,2018</div>
+                                        <div className="blog-item-title">อันดับของฝากเชียงคาน</div>
+                                        <div className="blog-item-content">ถ้าหากนึกถึงเชียงคาน หลายๆคนคงนึกถึงมะพร้าวแก้ว
+										แต่จะมีสักที่คนที่จะรู้ว่า....</div>
+                                    </div>
+                                </div>
+                            </Link>
+                            <Link to={"/blog/kk"} className="box-popular">
+                                <div className="box-compact-item-container">
+                                    <img className="img-popular-blog" src={kk} />
+                                    <div className="blog-item-tag">จัดอันดับ</div>
+                                    <div className="blog-compact-item-content">
+                                        <div className="blog-item-date">January 2, 2019</div>
+                                        <div className="blog-item-title">ไม่แวะซื้อไม่ได้แล้ว!! 5 อันดับของฝากจังหวัดขอนแก่น </div>
+                                    </div>
+                                </div>
+                            </Link>
+                            <Link to={"/blog/mh"} className="box-popular">
+                                <div className="box-compact-item-container">
+                                    <img className="img-popular-blog" src={mh} />
+                                    <div className="blog-item-tag">จัดอันดับ</div>
+                                    <div className="blog-compact-item-content">
+                                        <div className="blog-item-date">January 2, 2019</div>
+                                        <div className="blog-item-title">ไปไหนดี ที่สารคาม?</div>
+                                        <div className="blog-item-content">มหาสารคามจังหวัดเล็กๆที่ใครๆก็มองข้าม
+											หากพูดถึงจังหวัดมหาสารคามหลายๆคนคงนึกถึง....</div>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                        <div className="view-blog-container">
+                            <Link className="button-viewblog" to={"/blog"}>
+                                View Blog
+                            </Link>
+
                         </div>
                     </div>
                 </div>

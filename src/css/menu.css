@@ -1,6 +1,18 @@
 #menu {
     width: 100%;
-    height: 80px;
+    height: 150px;
+    background: white;
+    z-index: 999;
+    padding: 18px 0 8px 0;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
+    font-size: 16px;
+}
+.logo-menu{
+    width: 100%;
+    border-bottom: 1px solid rgb(236, 236, 236);
+}
+.logo{
+    width: 15%;
 }
 #menu > .menu-wrapper {
     position: relative;
@@ -28,6 +40,9 @@
     color: #7c7c7c;
     margin: 0px 15px;
 }
+.menu-nav{
+    margin-top:10px;
+}
 #menu > .menu-wrapper > .menu-nav > a.selected,
 #menu > .menu-wrapper > .menu-nav > a:hover {
     color: #f91942;
@@ -36,4 +51,8 @@
     #menu > .menu-wrapper {
         width: 100%;
     }
+    
+.logo{
+    width: 30%;
+}
 }

@@ -6,9 +6,13 @@ import { NavLink } from 'react-router-dom'
 class App extends Component {
     render() {
         return (
-            <div id="menu">
+            <div className="bgMenu" id="menu">
                 <div className="menu-wrapper">
-                    <img className="logo" src={ Logo } />
+
+                    <div className="logo-menu">
+
+                        <img className="logo" src={Logo} />
+                    </div>
                     <div className="menu-nav">
                         <NavLink exact to="/" activeClassName="selected">Home</NavLink>
                         <NavLink exact to="/list" activeClassName="selected">Listing</NavLink>

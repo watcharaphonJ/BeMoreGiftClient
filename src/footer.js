@@ -8,8 +8,11 @@ export default class footer extends Component {
                 <div className="container-footer">
                     <div className="about box-footer">
                         <img className="logo-footer" src={logo} alt="logo" />
-                        <div className="describe">
-                            Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.
+                        <div className="describe-footer">
+                            "bemoregift.com" เป็นโครงการรวบรวมร้านขายของฝากในภาคอีสานตอนบน เพื่อสนับสนุนการท่องเที่ยว
+                            นวัตกรรม และสินค้าประจำท้องถิ่นต่างๆ ซึ่งได้รับการสนับสนุนจาก
+                            <a style={{ color: "red" }} href="https://www.innohubkku.com/" target="_blank">
+                                "Innovation Hub KKU"</a>
                         </div>
                     </div>
                     { /* <div className="helful box-footer">
@@ -21,9 +24,9 @@ export default class footer extends Component {
                             Contact Us
                         </div>
                         <div>
-                            12345 Little Lonsdale St, Melbourne</div>
-                        E-mail : <div style={{ display: "inline-block", color: "#f91942", whiteSpace: "pre-line" }}>example@hotmail.com</div>
-                        <br />Phone : <div style={{ display: "inline-block", whiteSpace: "pre-line" }}>081-3722300</div>
+                            สาขาวิชาวิศวกรรมคอมพิวเตอร์ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยขอนแก่น อ.เมือง จ.ขอนแก่น 40002</div>
+                        E-mail : <a href="mailto:bemoregiftkku@gmail.com" style={{ display: "inline-block", color: "#f91942", whiteSpace: "pre-line" }}>bemoregiftkku@gmail.com</a>
+                        <br />Phone : <div style={{ display: "inline-block", whiteSpace: "pre-line" }}>(+66) 945304058 </div>
                     </div>
                 </div>
             </div>

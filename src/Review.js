@@ -15,17 +15,23 @@ import fourStar from "./img/4.png"
 import fiveStar from "./img/5.png"
 import swal from 'sweetalert';
 import MapContainer from './map'
+import Map from "./MapContainer"
 const API_URL = process.env.REACT_APP_API_URL;
-let locations = []
-var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-};
+const map = {
+    width: '100%',
+    height: '100%',
+    borderRadius: '5px'
+}
 
 export default class Review extends Component {
+    static defaultProps = {
+        center: {
+            lat: 59.95,
+            lng: 30.33
+        },
+        zoom: 11
+    };
+
     constructor(props) {
         super(props)
         this.state = {
@@ -36,11 +42,13 @@ export default class Review extends Component {
             describe: "",
             shop: ""
             , star: "",
+            location: {},
             Arrmenu: [],
-            location: [],
             name: "",
             email: "",
             comment: "",
+            lat: "",
+            lng: "",
             rating: "",
             img: [],
             fetched: false,
@@ -161,44 +169,8 @@ export default class Review extends Component {
             swal("Please complete the fill", "", "error");
         }
     }
-    initMap = (points) => {
-        var iniLat = points.location.lat
-        var iniLng = points.location.lng
-        var myLatLng = { lat: iniLat, lng: iniLng };
-        console.log(myLatLng, points.name)
-        var map = new window.google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: myLatLng
-        });
-        var i;
-        var image = {
-            url: '/img/0.png',
-            // This marker is 20 pixels wide by 32 pixels high.
-            size: new window.google.maps.Size(20, 32),
-            // The origin for this image is (0, 0).
-            origin: new window.google.maps.Point(0, 0),
-            // The anchor for this image is the base of the flagpole at (0, 32).
-            anchor: new window.google.maps.Point(0, 32)
-        };
-        var marker = new window.google.maps.Marker({
-            position: new window.google.maps.LatLng(iniLat, iniLng),
-            map: map,
-            icon: 'img/0.png',
-            title: points.name
-        });
-    }
-
-    componentWillMount = () => {
+    componentDidMount = () => {
         let ID = this.props.location.state._id
-        let location = this.props.location.state
-        console.log(location)
-        locations.push({
-            name: location.name,
-            lat: location.location.lat,
-            lng: location.location.lng
-        })
-
-        this.initMap(location)
         let URL = API_URL + "shop/" + ID
         fetch("https://api.bemoregift.com/review/" + ID)
             .then(response => response.json())
@@ -210,7 +182,8 @@ export default class Review extends Component {
         fetch(URL)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
+                // this.iniMap(data.results.location.lat, data.results.location.lng, data.results.name)
+
                 let stars = Math.round((data.results.rating.sum / data.results.rating.count)) || 0
                 this.setState({
                     province: data.results.address.province,
@@ -221,10 +194,14 @@ export default class Review extends Component {
                     shop: data.results.name,
                     Arrmenu: data.results.menu,
                     opening: data.results.opening,
-                    ID: data.results._id
-                    , star: stars,
-                    comment: data.results.rating.count
+                    ID: data.results._id,
+                    star: stars,
+                    comment: data.results.rating.count,
+                    lat: data.results.location.lat,
+                    lng: data.results.location.lng,
+                    name: data.results.name
                 });
+
                 let ArrImg = []
                 data.results.images.map((data, i) => {
                     ArrImg.push({
@@ -232,7 +209,6 @@ export default class Review extends Component {
                     })
                 })
                 this.setState({
-                    location: location,
                     img: ArrImg,
                     fetched: true
                 })
@@ -261,10 +237,8 @@ export default class Review extends Component {
         return [year, month, day].join('-');
     }
     render() {
-        let { reviews, comment, star, province, district, category, contact, describe, name, Arrmenu, shop, img, opening } = this.state
+        let { reviews, comment, star, province, district, category, contact, describe, name, lat, lng, Arrmenu, shop, img, opening } = this.state
         let imgUrl = "https://api.bemoregift.com/static/";
-
-        console.log(reviews)
         return (
             <div>
                 <Menu />
@@ -291,7 +265,7 @@ export default class Review extends Component {
                         <div className="titlebar">
                             <div className="listing-titlebar">
                                 <div className="review-left">
-                                    <div className="title-bar">
+                                    <div className="title-bar-review">
                                         <div className="titlereview">{shop}</div>
                                         <div className="listing-tag">{category}</div>
                                         <span>
@@ -337,9 +311,11 @@ export default class Review extends Component {
                                     </div>
                                     <section id="location">
                                         <div className="header-overview">Location</div>
-                                        <div className="bing-map" style={{ borderRadius: "5px" }}>
-                                            <div className="google-map" id="map">
-                                            </div>
+                                        <div className="bing-map" style={{ height: "500px", position: "relative" }}  >
+                                            <Map state={{ lat: lat, lng: lng, name: name }} />
+                                            {/* <div className="google-map" style={map} id="map-review">
+
+                                        </div>*/}
                                         </div>
                                     </section>
                                     <section id="review">
@@ -358,7 +334,7 @@ export default class Review extends Component {
                                                                     </div>
 
                                                                     <div>
-                                                                        <div>
+                                                                        <div className="date">
                                                                             {this.checkDate(review.dateadded)}
                                                                         </div>
                                                                     </div>

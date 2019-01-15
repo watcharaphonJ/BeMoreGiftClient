@@ -11,6 +11,16 @@
     display: block;
     clear: both;
 }
+.img-dec{
+    width: 45px;
+    height: 42px;
+}
+
+.home-img{
+    width: 100%;
+    overflow: hidden;
+    height: 500px;
+}
 .box-browse:hover{
     background-color: red;
     color: white;
@@ -60,10 +70,11 @@
     margin-top: 20px;
 }
 .BGhome{
-    width: 2000px;
-    height:500px;
+    width: 100%;
+    height:auto;
 }
 .content-home {
+    overflow: hidden;
     position: relative;
 }
 .header-browse{
@@ -105,6 +116,7 @@
     color: white;
 }
 .view-blog-container{
+    height: 40px;
     text-align: center;
 }
 .button-viewblog{
@@ -256,6 +268,7 @@
 }
 .BGhome{
     height: 500px;
+    width: 200%;
 }
 .container-footer{
     margin-top: 20px;

@@ -1,36 +1,35 @@
 import React, { Component } from 'react'
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-const mapStyles = {
-    width: '100%',
-    height: '100%',
-};
-
 export class MapContainer extends Component {
     constructor(props) {
         super(props)
         this.state = ({
             lat: "",
             lng: "",
-            name: ""
+            name: "",
+            width: "",
+            height: ""
         })
     }
     onMarkerClick = () => {
         const { lat, lng } = this.state
-        console.log(lat, lng)
         window.open("https://google.com/maps/search/?api=1&query=" + lat + "," + lng, "_blank")
     }
     componentWillMount = () => {
+        console.log(this.props)
         this.setState({
             lat: this.props.state.lat,
             lng: this.props.state.lng,
-            name: this.props.state.name
+            name: this.props.state.name,
+            width: this.props.state.width,
+            height: this.props.state.height
         })
     }
     render() {
-        const { lat, lng, name } = this.state
+        const { lat, lng, name, width, height } = this.state
         return (
             <Map
-                style={mapStyles}
+                style={{ width: width, height: height, display: "inline-block" }}
                 initialCenter={{
                     lat: lat,
                     lng: lng
@@ -44,11 +43,7 @@ export class MapContainer extends Component {
                     visible={this.state.showingInfoWindow}
                     onClose={this.onClose}
                 >
-                    <div>
-                        test
-          </div>
                 </InfoWindow>
-
             </Map>
         )
     }

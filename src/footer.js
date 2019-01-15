@@ -15,10 +15,6 @@ export default class footer extends Component {
                                 "Innovation Hub KKU"</a>
                         </div>
                     </div>
-                    { /* <div className="helful box-footer">
-                        <div className="header-helpful">Helpful Links</div>
-                        test
-            </div>*/}
                     <div className="contact box-footer">
                         <div className="header-helpful">
                             Contact Us

@@ -23,7 +23,6 @@ export default class CardList extends Component {
         }
     }
     componentWillMount = () => {
-        console.log(this.props.detail)
         let nameDetail = this.props.detail.name
         let cate = this.props.detail.category
         let count = this.props.detail.rating.count;

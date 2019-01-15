@@ -1,10 +1,10 @@
 .title-bar{
     font-size: 32px;
     line-height: 40px;
-    margin: 1px 0 3px 0;
-    padding-left: 114px;
-    padding-right: 114px;
-    
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    width: 970px;
 }
 .title-blog{
     font-size: 32px;
@@ -70,7 +70,7 @@
     display: block;
 }
 .widget-text{
-    width: 70%;
+    width: 200px;
     display: inline-block;
     position: relative;
     top: -9px;
@@ -173,13 +173,24 @@
 .nav-homeblog{
     font-size: 15px;
     font-weight: 400;
+    float: right;
+    
     color: #888;
 }
-
+.icon-mail-blog{
+    margin-right: 5px;
+    font-size: 50px;
+}
 @media only screen and (max-width:440px){
     .title-bar{
-        margin-left: 20px;
-        padding: 30px 0;
+        width: 100%;
+        margin-left: 15px;
+    }
+    .container-title-blog{
+        padding: 15px;
+    }
+    .nav-homeblog{
+        float: none;
     }
     .left-blog{
         width: 100%;
@@ -209,7 +220,7 @@
     .post-content{
         padding: 20px 35px;
     }
-    .fa-envelope{
+    .icon-mail-blog{
         font-size: 1rem !important;
         margin-right: 5px;
     }

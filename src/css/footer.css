@@ -10,9 +10,16 @@
     width: 1070px;
     margin: auto;
 }
+.container-footer::after{
+    content: ' ';
+    display: block;
+    clear: both;
+}
 .logo-footer{
     margin-bottom:20px;
+    width: 50%;
 }
+
 .about{
     width: 30%;
     float: left;

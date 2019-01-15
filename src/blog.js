@@ -13,14 +13,16 @@ export default class blog extends Component {
             <div>
                 <Menu />
                 <div className="title-bar">
-                    <div className="title-blog">
-                        Blog
-                    </div>
-                    <div className="title-latestNews">
-                        Latest News
-                    </div>
-                    <div className="nav-homeblog">
-                        Home > Blog
+                    <div className="container-title-blog">
+                        <div className="title-blog">
+                            Blog
+                        </div>
+                        <div className="title-latestNews">
+                            Latest News
+                        </div>
+                        <div className="nav-homeblog">
+                            Home > Blog
+                        </div>
                     </div>
                 </div>
                 <div className="container-blog">
@@ -79,9 +81,9 @@ export default class blog extends Component {
                         <div className="question">
                             <h3 className="got-any-question">Got any question?</h3>
                             <div className="info-box">
-                                <div>3 Having any questions? Feel free to ask!</div>
+                                <div>Having any questions? Feel free to ask!</div>
                                 <Link className="link-to-contact" to="/contact">
-                                    <i class="far fa-envelope"></i>
+                                    <i class="far fa-envelope icon-mail-blog"></i>
                                     Drop Us a Line
                                 </Link>
                             </div>

@@ -90,8 +90,8 @@ export default class CK extends Component {
                             <h3 className="got-any-question">Got any question?</h3>
                             <div className="info-box">
                                 <div>3 Having any questions? Feel free to ask!</div>
-                                <Link className="link-to-contact" to="/contact">
-                                    <i class="far fa-envelope"></i>
+                                <Link className="link-to-contact " to="/contact">
+                                    <i class="far fa-envelope icon-mail-blog"></i>
                                     Drop Us a Line
                                 </Link>
                             </div>

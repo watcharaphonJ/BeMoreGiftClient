@@ -1,41 +1,146 @@
 import React, { Component } from 'react';
 import Menu from './menu'
 import './css/list.css'
-import { ReactBingmaps } from 'react-bingmaps';
 import CardList from './CardList'
 import Footer from './footer'
 import { Link } from "react-router-dom";
 import MapContainer from './map'
-import InputRange from 'react-input-range';
+import InputSlider from 'react-input-slider';
+// Using an ES6 transpiler like Babel
+import SearchBox from './Searchbox'
+import ReactSimpleRange from 'react-simple-range';
 
 const API_URL = process.env.REACT_APP_API_URL;
 const API_CATEGORY = process.env.REACT_APP_API_GET_CATEGORY
-var locations = []
-
 class List extends Component {
     constructor(props) {
         super(props);
         this.state = {
             fetched: false,
             result: [],
-            search: false,
             name: "",
-            searchCategory: "",
-            searchAddress: "",
             location: [],
-            center: [],
-            value: { min: 2, max: 10 },
+            volume: 10,
+            CurrLat: "",
+            CurrLng: "",
+            toggle: true,
+            sort: ""
         }
 
     }
     sortList = (e) => {
-        console.log(e.target.value)
+        let params = (this.props.location.search)
+        let sort = e.target.value;
+        this.setState({
+            sort: sort,
+            result: []
+        })
+        let URL = "https://api.bemoregift.com/query?" + params + "&sort=" + sort
+        console.log(URL)
+        fetch(URL)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                const result = data.results
+                result.map((data, i) => {
+                    this.setState({
+                        location: [
+                            {
+                                name: data.name,
+                                lat: data.location.lat,
+                                lng: data.location.lng
+                            }
+                        ]
+                    })
+                })
+                this.setState({
+                    fetched: true,
+                    result: data.results
+                });
+            });
     }
 
 
+    getMyLocation() {
+        const location = window.navigator && window.navigator.geolocation
+
+        if (location) {
+            location.getCurrentPosition((position) => {
+                this.setState({
+                    CurrLat: position.coords.latitude,
+                    CurrLng: position.coords.longitude
+                })
+            }, (error) => {
+                this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
+            })
+        }
+
+    }
     componentWillMount = () => {
+
+        const location = window.navigator && window.navigator.geolocation
+        const center = []
+        if (location) {
+            location.getCurrentPosition((position) => {
+                center.push(
+                    position.coords.latitude,
+                    position.coords.longitude
+                )
+            })
+        }
+        this.getMyLocation()
         var params = (this.props.location.search)
+        console.log(params)
         let URL = API_URL + "query" + params;
+        console.log(URL)
+        fetch(URL)
+            .then(response => response.json())
+            .then(data => {
+                const result = data.results
+                let locations = []
+                result.map((data, i) => {
+                    console.log(data)
+                    locations.push({
+                        name: data.name,
+                        lat: data.location.lat,
+                        lng: data.location.lng,
+                        center: center
+                    })
+                })
+                this.setState({
+                    fetched: true,
+                    result: data.results,
+                    location: locations
+                });
+            });
+    }
+    showSlider = () => {
+        const { toggle } = this.state
+        console.log(toggle)
+        this.setState({
+            toggle: !toggle
+        })
+        if (toggle) {
+            document.getElementById("container-slider").style.display = "block"
+        } else {
+
+            document.getElementById("container-slider").style.display = "none"
+        }
+    }
+    changeValue = (value) => {
+        this.setState({
+            volume: value.value
+        })
+    }
+    changeDistance = (value) => {
+        const { sort, CurrLat, CurrLng } = this.state
+        console.log(CurrLat, CurrLng)
+        this.setState({
+            volume: value.value,
+            location: []
+        })
+        let params = (this.props.location.search)
+        let URL = "https://api.bemoregift.com/query?" + params + "&sort=" + sort + "&distance=" + value.value + "&latLng=" + CurrLat + "," + CurrLng
         console.log(URL)
         fetch(URL)
             .then(response => response.json())
@@ -49,7 +154,6 @@ class List extends Component {
                                 name: data.name,
                                 lat: data.location.lat,
                                 lng: data.location.lng
-
                             }
                         ]
                     })
@@ -61,8 +165,7 @@ class List extends Component {
             });
     }
     render() {
-        var resultCate = this.state.result
-        var { location, volume } = this.state
+        const { location, volume } = this.state
         console.log(location)
         return (
             <div className="page-list">
@@ -71,27 +174,46 @@ class List extends Component {
                     <div className="loading"><i class="fas fa-spinner "></i></div>
                     :
                     <div>
-
                         <div className="bing-map">
                             <MapContainer state={location} />
+                            <div className="searchbox-list" style={{ display: "none" }}>
+                                <SearchBox />
+                            </div>
                         </div>
                         <div className="sort-container">
-
                             <select className="sort" onChange={this.sortList}>
-                                <option className="option" value="">Default Order </option>
-                                <option className="option" value="A-Z">A-Z </option>
-                                <option className="option" value="Z-A">Z-A </option>
-                                <option className="option" value="review">Review </option>
-                                <option className="option" value="2">Test </option>
+                                <option className="option" value="">A - Z </option>
+                                <option className="option" value="rating"> Highest Rated </option>
+                                <option className="option" value="review"> Most Reviewed </option>
                             </select>
-                            <InputRange
-                                maxValue={20}
-                                minValue={0}
-                                value={this.state.value}
-                                onChange={value => this.setState({ value })} />
+                            <div className="distance" onClick={this.showSlider}>
+                                Distance Radius
+                                <i class="fas fa-angle-down arrow-distance">
+                                </i>
+                            </div>
+                            <div id="container-slider" className="container-slider">
+                                <div>
+                                    <div id="show-range-value" className="range-value"> {volume}</div>
+                                    <div style={{ display: "inline-block" }}>km</div>
+                                </div>
+                                <div className="data-title">
+                                    Radius around selected destination
+                                </div>
+                                <ReactSimpleRange
+                                    sliderSize={9}
+                                    min={1}
+                                    max={1000}
+                                    sliderColor={"#e6e6e6"}
+                                    customThumb={"<div className='circle'></div>"}
+                                    trackColor={"#f91942"}
+                                    thumbColor={"#66676b"}
+                                    onChangeComplete={this.changeDistance}
+                                    value={volume}
+                                    onChange={this.changeValue} />
+                            </div>
                         </div>
                         <div className="container-list">
-                            {resultCate.map((shop, i) => {
+                            {this.state.result.map((shop, i) => {
                                 return (
                                     <Link className="container-card-list" to={{ pathname: "/review", state: shop }}>
                                         <CardList detail={shop} key={i} />

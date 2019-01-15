@@ -3,11 +3,13 @@ import Menu from './menu';
 import './css/home.css'
 import Searchbox from './Searchbox'
 import Footer from './footer'
-import bgphone from './img/bgphone.jpg'
+import bgwindow from './img/bgphone.jpg'
+import bgphone from './img/bgphonee.jpg'
 import { Link } from "react-router-dom";
 import ck from './img/ck-por.jpg'
 import kk from './img/kk-por.jpg'
 import mh from './img/mh-por.jpg'
+import dec from './img/decoration.png'
 
 class Home extends Component {
     constructor(props) {
@@ -16,11 +18,16 @@ class Home extends Component {
             search: false
         }
     }
+
     checkScreen = () => {
         var width = window.screen.availWidth
         if (width > 640) {
             return (
-                <img src={bgphone} alt="Background" className="BGhome" />
+
+                <div className="home-img">
+
+                    <img src={bgwindow} alt="Background" className="BGhome" />
+                </div>
             )
         }
         else {
@@ -34,61 +41,63 @@ class Home extends Component {
             <div className="page-home">
                 <Menu />
                 <div className="content-home">
-                    {this.checkScreen()}
-                    <div className="container-search-box">
-                        <div className="text-top-searchbox">
-                            <div className="title">Find Nearby Attractions</div>
-                            <div className="sub-title">Find the perfect gift for your loved ones.</div>
+                    <div>
+
+                        {this.checkScreen()}
+                        <div className="container-search-box">
+                            <div className="text-top-searchbox">
+                                <div className="title">Find Nearby Attractions</div>
+                                <div className="sub-title">Find the perfect gift for your loved ones.</div>
+                            </div>
+                            <Searchbox />
                         </div>
-                        <Searchbox />
-                    </div>
-                    <div className="container-browse-categories">
-                        <div className="header-browse">
-                            Browse Categories
+                        <div className="container-browse-categories">
+                            <div className="header-browse">
+                                Browse Categories
                          </div>
-                        <div className="container-browse-box">
-                            <Link className="box-browse" to={"/list?category=" + escape("Food & Drink")}>
-                                <div>
+                            <div className="container-browse-box">
+                                <Link className="box-browse" to={"/list?category=" + escape("Food & Drink")}>
+                                    <div>
 
-                                    <i class="fas fa-utensils"></i>
-                                    <div>Food & Drink</div>
-                                </div>
-                            </Link>
-                            <Link className="box-browse" to={"/list?category=Appliance"}>
-                                <div>
+                                        <i class="fas fa-utensils"></i>
+                                        <div>Food & Drink</div>
+                                    </div>
+                                </Link>
+                                <Link className="box-browse" to={"/list?category=Appliance"}>
+                                    <div>
 
-                                    <i class="fas fa-shopping-basket"></i>
-                                    <div>Appliance</div>
-                                </div>
-                            </Link>
-                            <Link className="box-browse" to={"/list?category=Decoration"}>
-                                <div >
-                                    <i class="far fa-gem"></i>
-                                    <div>Decoration</div>
-                                </div>
-                            </Link>
+                                        <i class="fas fa-shopping-basket"></i>
+                                        <div>Appliance</div>
+                                    </div>
+                                </Link>
+                                <Link className="box-browse" to={"/list?category=Decoration"}>
+                                    <div >
+                                        <i class="fas fa-couch"></i>
+                                        <div>Decoration</div>
+                                    </div>
+                                </Link>
 
-                            <Link className="box-browse" to={"/list?category=Costume"}>
-                                <div>
-                                    <i class="fas fa-tshirt"></i>
-                                    <div>Costume</div>
-                                </div>
-                            </Link>
+                                <Link className="box-browse" to={"/list?category=Costume"}>
+                                    <div>
+                                        <i class="fas fa-tshirt"></i>
+                                        <div>Costume</div>
+                                    </div>
+                                </Link>
 
-                            <Link className="box-browse" to={"/list?category=Accessories"}>
-                                <div >
-                                    <i class="far fa-gem"></i>
-                                    <div>Accessories</div>
-                                </div>
-                            </Link>
-                            <Link className="box-browse" to={"/list?category=etc"}>
-                                <div >
-                                    <i class="fas fa-dumbbell"></i>
-                                    <div>etc.</div>
-                                </div>
-                            </Link>
-                        </div>
-                    </div>
+                                <Link className="box-browse" to={"/list?category=Accessories"}>
+                                    <div >
+                                        <i class="far fa-gem"></i>
+                                        <div>Accessories</div>
+                                    </div>
+                                </Link>
+                                <Link className="box-browse" to={"/list?category=etc"}>
+                                    <div >
+                                        <i class="fas fa-dumbbell"></i>
+                                        <div>etc.</div>
+                                    </div>
+                                </Link>
+                            </div>
+                        </div></div>
                     <div className="popular-container">
                         <div className="title-popular">
                             Popular Blog

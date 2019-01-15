@@ -14,24 +14,11 @@ import threeStar from "./img/3.png"
 import fourStar from "./img/4.png"
 import fiveStar from "./img/5.png"
 import swal from 'sweetalert';
-import MapContainer from './map'
+import SlideShow from 'react-image-show';
 import Map from "./MapContainer"
 const API_URL = process.env.REACT_APP_API_URL;
-const map = {
-    width: '100%',
-    height: '100%',
-    borderRadius: '5px'
-}
 
 export default class Review extends Component {
-    static defaultProps = {
-        center: {
-            lat: 59.95,
-            lng: 30.33
-        },
-        zoom: 11
-    };
-
     constructor(props) {
         super(props)
         this.state = {
@@ -183,7 +170,7 @@ export default class Review extends Component {
             .then(response => response.json())
             .then(data => {
                 // this.iniMap(data.results.location.lat, data.results.location.lng, data.results.name)
-
+                let imgUrl = "https://api.bemoregift.com/static/";
                 let stars = Math.round((data.results.rating.sum / data.results.rating.count)) || 0
                 this.setState({
                     province: data.results.address.province,
@@ -204,9 +191,9 @@ export default class Review extends Component {
 
                 let ArrImg = []
                 data.results.images.map((data, i) => {
-                    ArrImg.push({
-                        img: data
-                    })
+                    ArrImg.push(
+                        imgUrl + data
+                    )
                 })
                 this.setState({
                     img: ArrImg,
@@ -239,28 +226,24 @@ export default class Review extends Component {
     render() {
         let { reviews, comment, star, province, district, category, contact, describe, name, lat, lng, Arrmenu, shop, img, opening } = this.state
         let imgUrl = "https://api.bemoregift.com/static/";
+
+        console.log(img)
         return (
             <div>
                 <Menu />
                 {!this.state.fetched ? <div className="loading"><i class="fas fa-spinner "></i></div> :
                     <div className="container-review">
                         <div className="Divcarousel">
-
-                            <Carousel
-                                autoPlay={true}
-                                infiniteLoop={true}
-                                width={1000}
-                                dynamicHeight={true}
-                            >
-                                {img.map((img, i) => {
-                                    return (
-                                        <div>
-                                            <img src={imgUrl + img.img} />
-                                        </div>
-                                    )
-                                })}
-
-                            </Carousel>
+                            <SlideShow
+                                images={img}
+                                width="1000px"
+                                imagesWidth="900px"
+                                imagesHeight="400px"
+                                imagesHeightMobile="56vw"
+                                thumbnailsWidth="500px"
+                                thumbnailsHeight="400px"
+                                infinite indicators thumbnails fixedImagesHeight
+                            />
                         </div>
                         <div className="titlebar">
                             <div className="listing-titlebar">
@@ -312,7 +295,7 @@ export default class Review extends Component {
                                     <section id="location">
                                         <div className="header-overview">Location</div>
                                         <div className="bing-map" style={{ height: "500px", position: "relative" }}  >
-                                            <Map state={{ lat: lat, lng: lng, name: name }} />
+                                            <Map state={{ lat: lat, lng: lng, name: name, width: "100%", height: "100%" }} />
                                             {/* <div className="google-map" style={map} id="map-review">
 
                                         </div>*/}
@@ -482,7 +465,7 @@ export default class Review extends Component {
                                         {contact.phone ? <div className="detail-contact"><i className="fas fa-phone" style={{ height: '0px' }}></i> {contact.phone}</div> : null}
                                         {contact.email ? <div className="detail-contact"><i className="far fa-envelope"></i> {contact.email}</div> : null}
                                         {contact.facebook ? <div className="detail-contact"><i className="fab fa-facebook"></i><a href={contact.facebook} className="social"> facebook</a></div> : null}
-                                        {contact.twitter ? <div className="detail-contact"><i class="fab fa-twitter"></i><a href={contact.twitter} className="social"> twitter</a></div> : null}
+                                        {contact.line ? <div className="detail-contact"><i class="fab fa-line"></i><a href={contact.line} className="social"> line</a></div> : null}
                                     </div>
                                 </div>
 

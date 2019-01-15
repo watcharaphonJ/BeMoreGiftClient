@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import './css/search-box.css'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import jsonProvince from './changwats.json'
+import jsonDistrict from './amphoes.json'
+
+function getChangwatByPid(pid) {
+    return jsonProvince.en.changwats.filter(
+        function (data) { return data.pid === pid }
+    );
+}
+function getAmphoeByPid(pid) {
+    return jsonDistrict.en.amphoes.filter(
+        function (data) { return data.pid === pid }
+    );
+}
 export default class Searchbox extends Component {
     constructor(props) {
         super(props)
@@ -12,6 +25,7 @@ export default class Searchbox extends Component {
         }
     }
     chkCategories = (e) => {
+        console.log(e.target.value)
         this.setState({
             category: e.target.value
         })
@@ -22,51 +36,24 @@ export default class Searchbox extends Component {
             district: e.target.value
         })
     }
-    onProvinceChange = (e) => {
+    onProvinceChange = (province) => {
         this.setState({
-            province: e.target.value,
-            district: "Muang Khon Kaen"
+            province: getChangwatByPid(province.target.value)[0].name
         })
-        let province = e.target.value;
-        let district = this.district;
-
-        let districtOptions = '<option disabled="disabled" value="">Select District</option>';
-        switch (province) {
-            case 'Khon Kaen':
-                districtOptions += '<option value="Muang Khon Kaen">Muang Khon Kaen</option>';
-                districtOptions += '<option value="Chum Phae">Chum Phae</option>';
-                districtOptions += '<option value="Nam Phong">Nam Phong</option>';
-                districtOptions += '<option value="Ban Phai">Ban Phai</option>';
-                districtOptions += '<option value="Nong Ruea">Nong Ruea</option>';
-                districtOptions += '<option value="Phon">Phon</option>';
-                districtOptions += '<option value="Kranuan">Kranuan</option>';
-                districtOptions += '<option value="Si Chomphu">Si Chomphu</option>';
-                districtOptions += '<option value="Nong Song Hong">Nong Song Hong</option>';
-                districtOptions += '<option value="Phu Wiang">Phu Wiang</option>';
-                districtOptions += '<option value="Mancha Khiri">Mancha Khiri</option>';
-                districtOptions += '<option value="Ban Fang">Ban Fang</option>';
-                districtOptions += '<option value="Chonnabot">Chonnabot</option>';
-                districtOptions += '<option value="Ubolratana">Ubolratana</option>';
-                districtOptions += '<option value="Waeng Noi">Waeng Noi</option>';
-                districtOptions += '<option value="Khao Suan Kwang">Khao Suan Kwang</option>';
-                districtOptions += '<option value="Phra Yuen">Phra Yuen</option>';
-                districtOptions += '<option value="Ban Haet">Ban Haet</option>';
-                districtOptions += '<option value="Waeng Yai">Waeng Yai</option>';
-                districtOptions += '<option value="Non Sila">Non Sila</option>';
-                districtOptions += '<option value="Khok Pho Chai">Khok Pho Chai</option>';
-                districtOptions += '<option value="Nong Na Kham">Nong Na Kham</option>';
-                districtOptions += '<option value="Sam Sung">Sam Sung</option>';
-                districtOptions += '<option value="Phu Pha Man">Phu Pha Man</option>';
-                districtOptions += '<option value="Pueai Noi">Pueai Noi</option>';
-                districtOptions += '<option value="Wiang Kao">Wiang Kao</option>';
-                break;
-        }
+        let district = document.getElementById("district")
+        let districtOptions = '<option value="">All District</option>';
+        jsonDistrict.en.amphoes
+            .filter(function (el) {
+                return (el.changwat_pid === province.target.value);
+            })
+            .map(function (el) {
+                districtOptions += '<option value' + el.pid + '>' + el.name + '</option>';
+            });
         district.innerHTML = districtOptions;
     }
     render() {
         let { category, district, province, name } = this.state
 
-        console.log(name)
         return (
             <div className="container-search">
                 <div className="main-search-input height-input">
@@ -82,17 +69,24 @@ export default class Searchbox extends Component {
                     <div className="container-select height-input">
                         <div className="select select-location" style={{ width: '50%', height: '100%' }}>
                             <select className="province" style={{ borderColor: "transparent", color: "#808080", width: "100%", height: "100%" }} id="province" name="province" defaultValue="" onChange={this.onProvinceChange} >
-                                <option disabled="disabled" value="">Select Province</option>
-                                <option value="Khon Kaen">Khon Kaen</option>
+                                <option value="">All Province</option>
+
+                                {
+                                    jsonProvince.en.changwats.map((province) => {
+                                        return (
+                                            <option value={province.pid}>{province.name}</option>
+                                        )
+                                    })
+                                }
                             </select>
                         </div>
                         <div className="select select-location select-district" style={{ width: 'calc(50% - 10px)', height: '100%' }}>
                             <select className="district" style={{ borderColor: "transparent", color: "#808080", width: "100%", height: "100%" }} id="district" name="district" defaultValue="" ref={select => { this.district = select }} onChange={this.onDistrictChange}>
-                                <option disabled="disabled" value="">Select District</option>
+                                <option value="">All District</option>
                             </select>
                         </div>
                     </div>
-                    <div className="select select-categories height-input" style={{ height: '100%'}}>
+                    <div className="select select-categories height-input" style={{ height: '100%' }}>
                         <select className="select-cate" style={{ borderColor: "transparent", color: "#808080", width: "100%", height: "100%" }} onClick={
                             this.chkCategories
                         }>
@@ -106,7 +100,7 @@ export default class Searchbox extends Component {
                         </select >
                     </div>
                     <div className="button-search">
-                        <Link to={"/list?name=" + name + "&district=" + district + "&province=" + province + "&category=" + category} className="button is-danger is-rounded" >Search</Link>
+                        <Link to={"/list?name=" + name + "&district=" + district + "&province=" + province + "&category=" + escape(category)} className="button is-danger is-rounded" >Search</Link>
                     </div>
                 </div>
 

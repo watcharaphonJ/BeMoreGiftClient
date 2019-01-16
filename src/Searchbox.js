@@ -70,7 +70,6 @@ export default class Searchbox extends Component {
                         <div className="select select-location" style={{ width: '50%', height: '100%' }}>
                             <select className="province" style={{ borderColor: "transparent", color: "#808080", width: "100%", height: "100%" }} id="province" name="province" defaultValue="" onChange={this.onProvinceChange} >
                                 <option value="">All Province</option>
-
                                 {
                                     jsonProvince.en.changwats.map((province) => {
                                         return (
@@ -87,7 +86,7 @@ export default class Searchbox extends Component {
                         </div>
                     </div>
                     <div className="select select-categories height-input" style={{ height: '100%' }}>
-                        <select className="select-cate" style={{ borderColor: "transparent", color: "#808080", width: "100%", height: "100%" }} onClick={
+                        <select className="select-cate" style={{ borderColor: "transparent", color: "#808080", width: "100%", height: "100%" }} onChange={
                             this.chkCategories
                         }>
                             <option value="" > All Categories </option>

@@ -99,7 +99,7 @@ class List extends Component {
                 const result = data.results
                 let locations = []
                 result.map((data, i) => {
-                    console.log(data)
+                    console.log(data._id)
                     locations.push({
                         name: data.name,
                         lat: data.location.lat,
@@ -140,13 +140,16 @@ class List extends Component {
             location: []
         })
         let params = (this.props.location.search)
-        let URL = "https://api.bemoregift.com/query?" + params + "&sort=" + sort + "&distance=" + value.value + "&latLng=" + CurrLat + "," + CurrLng
+        let URL = "https://api.bemoregift.com/query?"
+            + params
+            + "&sort=" + sort
+            + "&distance=" + value.value
+            + "&latLng=" + CurrLat + "," + CurrLng
         console.log(URL)
         fetch(URL)
             .then(response => response.json())
             .then(data => {
                 const result = data.results
-                console.log(result)
                 result.map((data, i) => {
                     this.setState({
                         location: [
@@ -165,8 +168,7 @@ class List extends Component {
             });
     }
     render() {
-        const { location, volume } = this.state
-        console.log(location)
+        const { volume, result } = this.state
         return (
             <div className="page-list">
                 <Menu />
@@ -175,7 +177,7 @@ class List extends Component {
                     :
                     <div>
                         <div className="bing-map">
-                            <MapContainer state={location} />
+                            <MapContainer state={this.state.location} />
                             <div className="searchbox-list" style={{ display: "none" }}>
                                 <SearchBox />
                             </div>
@@ -215,7 +217,7 @@ class List extends Component {
                         <div className="container-list">
                             {this.state.result.map((shop, i) => {
                                 return (
-                                    <Link className="container-card-list" to={{ pathname: "/review", state: shop }}>
+                                    <Link className="container-card-list" to={"/review/" + shop._id}>
                                         <CardList detail={shop} key={i} />
                                     </Link>
                                 );

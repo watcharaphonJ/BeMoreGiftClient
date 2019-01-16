@@ -157,7 +157,7 @@ export default class Review extends Component {
         }
     }
     componentDidMount = () => {
-        let ID = this.props.location.state._id
+        let ID = this.props.match.params.id
         let URL = API_URL + "shop/" + ID
         fetch("https://api.bemoregift.com/review/" + ID)
             .then(response => response.json())

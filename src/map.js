@@ -14,7 +14,9 @@ export class MapContainer extends Component {
     }
     componentWillMount = () => {
         var location = this.props.state
-        console.log(location)
+        this.setState({
+            points: []
+        })
         let locations = []
         location.map((location, i) => {
             locations.push([
@@ -26,7 +28,6 @@ export class MapContainer extends Component {
                 location.center[1]
             ])
         })
-
         this.setState({
             points: locations
         })
@@ -34,8 +35,6 @@ export class MapContainer extends Component {
     componentDidMount = () => {
         this.initMap()
     }
-
-
 
     initMap = () => {
         const { points } = this.state

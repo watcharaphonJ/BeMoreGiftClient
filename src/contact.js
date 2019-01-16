@@ -9,8 +9,8 @@ export default class contact extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            CurrLat: "",
-            CurrLng: "",
+            CurrLat: 16.472686,
+            CurrLng: 102.8234523,
             name: "",
             email: "",
             subject: "",
@@ -25,7 +25,6 @@ export default class contact extends Component {
             return (
                 <div className="container-contact-map">
                     <Map state={{ lat: CurrLat, lng: CurrLng, name: "Office", width: "60%", height: "420px" }} />
-
                     <div className="address-box-container">
                         <div class="address-container" >
                             <div class="office-address">
@@ -46,8 +45,9 @@ export default class contact extends Component {
             console.log(CurrLat, CurrLng)
             return (
                 <div className="container-contact-map">
-                    <Map state={{ lat: CurrLat, lng: CurrLng, name: "Office", width: "100%", height: "300px" }} />
-
+                    <div className="div-map-contact">
+                        <Map state={{ lat: CurrLat, lng: CurrLng, name: "Office", width: "100%", height: "300px" }} />
+                    </div>
                     <div className="address-box-container">
                         <div class="address-container" >
                             <div class="office-address">
@@ -64,21 +64,6 @@ export default class contact extends Component {
                 </div >
             )
         }
-    }
-
-    getMyLocation() {
-        const location = window.navigator && window.navigator.geolocation
-        if (location) {
-            location.getCurrentPosition((position) => {
-                this.setState({
-                    CurrLat: 16.472686,
-                    CurrLng: 102.8234523
-                })
-            }, (error) => {
-                this.setState({ latitude: 'err-latitude', longitude: 'err-longitude' })
-            })
-        }
-
     }
     postContact = () => {
         const { name, email, message, subject } = this.state
@@ -102,9 +87,6 @@ export default class contact extends Component {
             ).then(() => { window.location.reload() })
 
     }
-    componentWillMount = () => {
-        this.getMyLocation()
-    }
     render() {
         return (
             <div>
@@ -122,9 +104,9 @@ export default class contact extends Component {
                                 <div className="title-detail-contact"> Find Us There</div>
                                 <div className="detail-contact-text">
                                     "bemoregift.com" เป็นโครงการรวบรวมร้านขายของฝากในภาคอีสานตอนบน เพื่อสนับสนุนการท่องเที่ยว นวัตกรรม และสินค้าประจำท้องถิ่นต่างๆ
-                                ซึ่งได้รับการสนับสนุนจาก
-                            </div>
-                                <a href="https://www.innohubkku.com/" target="_blank"> <b>"Innovation Hub KKU"</b></a>
+                                ซึ่งได้รับการสนับสนุนจาก <a className="link-inno" href="https://www.innohubkku.com/" target="_blank"> <b>"Innovation Hub KKU"</b></a>
+
+                                </div>
                                 <div className="container-contact-detail">
                                     <div className="contact-phone">
                                         <i class="fas fa-phone-volume icon-contact"></i>

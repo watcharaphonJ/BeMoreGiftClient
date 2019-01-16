@@ -12,6 +12,9 @@
     left: 170px;
     width: 940px;
 }
+.notfound{
+    text-align: center;
+}
 .arrow-distance{
     font-size:16px !important;
     color: #f91942;
@@ -172,7 +175,7 @@
   .dropdown:hover .dropdown-content {
     display: block;
   }
-@media only screen and (max-width:440px){
+@media only screen and (max-width:770px){
     .searchbox-list{
         position: absolute;
         top: 250px;

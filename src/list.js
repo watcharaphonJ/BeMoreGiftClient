@@ -90,7 +90,6 @@ class List extends Component {
         }
         this.getMyLocation()
         var params = (this.props.location.search)
-        console.log(params)
         let URL = API_URL + "query" + params;
         console.log(URL)
         fetch(URL)
@@ -99,12 +98,12 @@ class List extends Component {
                 const result = data.results
                 let locations = []
                 result.map((data, i) => {
-                    console.log(data._id)
                     locations.push({
                         name: data.name,
                         lat: data.location.lat,
                         lng: data.location.lng,
-                        center: center
+                        center: center,
+                        img: data.images
                     })
                 })
                 this.setState({
@@ -116,7 +115,6 @@ class List extends Component {
     }
     showSlider = () => {
         const { toggle } = this.state
-        console.log(toggle)
         this.setState({
             toggle: !toggle
         })
@@ -134,7 +132,6 @@ class List extends Component {
     }
     changeDistance = (value) => {
         const { sort, CurrLat, CurrLng } = this.state
-        console.log(CurrLat, CurrLng)
         this.setState({
             volume: value.value,
             location: []
@@ -169,6 +166,7 @@ class List extends Component {
     }
     render() {
         const { volume, result } = this.state
+
         return (
             <div className="page-list">
                 <Menu />
@@ -215,6 +213,13 @@ class List extends Component {
                             </div>
                         </div>
                         <div className="container-list">
+                            {
+                                this.state.result.length === 0 ?
+
+                                    <div className="notfound">ไม่พบผลลัพธ์</div>
+                                    : null
+                            }
+
                             {this.state.result.map((shop, i) => {
                                 return (
                                     <Link className="container-card-list" to={"/review/" + shop._id}>

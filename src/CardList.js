@@ -65,7 +65,7 @@ export default class CardList extends Component {
                             <div className="container-detail">
                                 <div className="name-location">{name}</div>
                                 <div className="address">
-                                    {district + ',' + province}
+                                    {district + ',  ' + province}
                                 </div>
                                 <img className="review" src={this.starPath(ReviewStar)} /><div className="count">({count} reviews)</div>
                             </div>

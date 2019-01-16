@@ -41,7 +41,7 @@ export class MapContainer extends Component {
         var myLatLng, iniLat, iniLng;
         console.log(points)
         if (points.length == 0) {
-            myLatLng = { lat: points[4], lng: points[5] }
+            myLatLng = { lat: 16.4335967, lng: 102.8228224 }
             var map = new window.google.maps.Map(document.getElementById('map'), {
                 zoom: 15,
                 center: myLatLng
@@ -50,8 +50,7 @@ export class MapContainer extends Component {
         else {
             iniLat = points[0][4]
             iniLng = points[0][5]
-            myLatLng = { lat: points[0][4], lng: points[0][5] };
-            console.log(myLatLng)
+            myLatLng = { lat: iniLat, lng: iniLng };
             var i;
             var map = new window.google.maps.Map(document.getElementById('map'), {
                 zoom: 15,
@@ -74,7 +73,6 @@ export class MapContainer extends Component {
 
                 });
 
-                infowindow.open(map, marker);
                 window.google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
                     return function () {
                         infowindow.setContent(points[i][0]);

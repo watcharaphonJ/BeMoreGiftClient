@@ -108,9 +108,6 @@
     transition: margin-bottom 0.5s;
 }
 
-.box-compact-item-container:hover{
-    bottom: 5px;
-}
 .button-viewblog:hover{
     background-color:#f91942;
     color: white;
@@ -138,8 +135,11 @@
     width: 100%;
     border-radius: 4px;
     margin-bottom: 30px;
-    transition:bottom 0.5s;
+    transition:all 0.5s;
+}
 
+.box-compact-item-container:hover{
+    bottom: 5px;
 }
 .post-popular-container{
 

@@ -51,7 +51,10 @@
     margin: -5px 0 30px 0;
 }
 .detail-contact-text{
-    text-indent: 30px;
+    text-indent: 30px;    color: #707070;
+}
+.link-inno{
+    color: black;
 }
 .container-contact-map{
     position: relative;
@@ -150,8 +153,11 @@
         width: 100%;
     }
     .contact-left{
-        display:block;
+    margin-top: 30px;
     width: 100%;
+}
+.div-map-contact{
+    height: 300px;
 }
 .title-ouroffice{
     font-size: 27px;

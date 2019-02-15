@@ -3,14 +3,30 @@ import './css/menu.css'
 import Logo from './img/logo.png'
 import { NavLink } from 'react-router-dom'
 
+
 class App extends Component {
+
+    // getPosition = () => {
+    //     window.addEventListener("scroll", function (event) {
+    //         var scroll = this.scrollY;
+    //         if (scroll >= 313.6000061035156) {
+    //             document.getElementById("menu").style.position = "fixed";
+    //             document.getElementById("menu").style.transform = "translate(0,0) scale(1);";
+    //             document.getElementById("menu").style.transition = "0.3s";
+    //         }
+    //         else if (scroll <= 313.6000061035156) {
+    //             document.getElementById("menu").style.visibility = "absolute";
+    //             document.getElementById("menu").style.transform = "translate(0,-100%) scale(1);";
+    //             document.getElementById("menu").style.transition = "0.3s";
+    //         }
+    //     });
+    // }
     render() {
+        //   this.getPosition()
         return (
             <div className="bgMenu" id="menu">
-                <div className="menu-wrapper">
-
+                <div className="menu-wrapper" id="main">
                     <div className="logo-menu">
-
                         <img className="logo" src={Logo} />
                     </div>
                     <div className="menu-nav">

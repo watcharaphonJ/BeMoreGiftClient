@@ -77,17 +77,24 @@
         background: white;
         border-radius: 4px;
         margin-top: 10px;
+        font-size: 14px;
+    
     }
     .select-district{
         margin-left: 0px;
     }
     .input-location{
+        border-radius: 4px;
         margin-bottom: 10px;
         width:auto;
         width: 100%;
+        font-size: 14px;
+        padding-left: calc(.625em - 1px);
+        margin-left: 0;
     }
     
     .select-location{
+        font-size: 14px;
         width: 50%;
     }
     .height-input{

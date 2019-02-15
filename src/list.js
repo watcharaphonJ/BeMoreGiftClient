@@ -5,8 +5,6 @@ import CardList from './CardList'
 import Footer from './footer'
 import { Link } from "react-router-dom";
 import MapContainer from './map'
-import InputSlider from 'react-input-slider';
-// Using an ES6 transpiler like Babel
 import SearchBox from './Searchbox'
 import ReactSimpleRange from 'react-simple-range';
 
@@ -40,7 +38,6 @@ class List extends Component {
         fetch(URL)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 const result = data.results
                 result.map((data, i) => {
                     this.setState({
@@ -77,7 +74,6 @@ class List extends Component {
 
     }
     componentWillMount = () => {
-
         const location = window.navigator && window.navigator.geolocation
         const center = []
         if (location) {
@@ -95,15 +91,20 @@ class List extends Component {
         fetch(URL)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 const result = data.results
                 let locations = []
                 result.map((data, i) => {
+                    let starSum = Math.round((data.rating.sum / data.rating.count)) || 0
                     locations.push({
                         name: data.name,
                         lat: data.location.lat,
                         lng: data.location.lng,
                         center: center,
-                        img: data.images
+                        img: data.images,
+                        star: starSum,
+                        id: data._id,
+                        comment: data.rating.count
                     })
                 })
                 this.setState({
@@ -132,28 +133,46 @@ class List extends Component {
     }
     changeDistance = (value) => {
         const { sort, CurrLat, CurrLng } = this.state
-        this.setState({
-            volume: value.value,
-            location: []
-        })
+        const location = window.navigator && window.navigator.geolocation
+        const center = []
+        if (location) {
+            location.getCurrentPosition((position) => {
+                center.push(
+                    position.coords.latitude,
+                    position.coords.longitude
+                )
+            })
+        }
         let params = (this.props.location.search)
         let URL = "https://api.bemoregift.com/query?"
             + params
             + "&sort=" + sort
             + "&distance=" + value.value
             + "&latLng=" + CurrLat + "," + CurrLng
+        this.setState({
+            volume: value.value,
+            location: [],
+            result: []
+        })
         console.log(URL)
         fetch(URL)
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 const result = data.results
                 result.map((data, i) => {
+                    let starSum = Math.round((data.rating.sum / data.rating.count)) || 0
                     this.setState({
                         location: [
                             {
                                 name: data.name,
                                 lat: data.location.lat,
-                                lng: data.location.lng
+                                lng: data.location.lng,
+                                star: starSum,
+                                center: center,
+                                img: data.images,
+                                id: data._id,
+                                comment: data.rating.count
                             }
                         ]
                     })
@@ -166,7 +185,6 @@ class List extends Component {
     }
     render() {
         const { volume, result } = this.state
-
         return (
             <div className="page-list">
                 <Menu />
@@ -174,6 +192,7 @@ class List extends Component {
                     <div className="loading"><i class="fas fa-spinner "></i></div>
                     :
                     <div>
+
                         <div className="bing-map">
                             <MapContainer state={this.state.location} />
                             <div className="searchbox-list" style={{ display: "none" }}>
@@ -215,7 +234,6 @@ class List extends Component {
                         <div className="container-list">
                             {
                                 this.state.result.length === 0 ?
-
                                     <div className="notfound">ไม่พบผลลัพธ์</div>
                                     : null
                             }

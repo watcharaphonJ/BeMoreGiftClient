@@ -1,25 +1,38 @@
 #menu {
     width: 100%;
-    height: 150px;
+    height: 80px;
     background: white;
     z-index: 999;
     padding: 18px 0 8px 0;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12);
     font-size: 16px;
 }
-.logo-menu{
+#header.cloned.unsticky{
+    opacity: 1;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(0,-100%) scale(1);
+    transition: 0.3s;
+    position: fixed;
     width: 100%;
-    border-bottom: 1px solid rgb(236, 236, 236);
+    z-index: 999;
+    top: 50px;
+}
+.logo-menu{
+    border-bottom: 0px; 
+    width: 200px;
+    display: inline-block;
+    height: auto;
 }
 .logo{
-    margin-bottom: 15px;
-    width: 15%;
+    width: 65%;
 }
 #menu > .menu-wrapper {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    width: 970px;height: auto;
+    width: 1080px;
+    height: auto;
     margin: auto;
     padding: 0px 10px;
     box-sizing: border-box;
@@ -31,7 +44,8 @@
 }
 #menu > .menu-wrapper > .logo {
     float: left;
-    width: auto;height: 38px;
+    width: auto;
+    height: 38px;
     vertical-align: top;
     margin-right: 20px;
 }
@@ -43,18 +57,37 @@
     transition: all 0.2s;
 }
 .menu-nav{
-    margin-top:10px;
+    top: 0px;
+    left: 150px;
+    position: absolute;
+    vertical-align: middle;
+    display: inline-block;
 }
 #menu > .menu-wrapper > .menu-nav > a.selected,
 #menu > .menu-wrapper > .menu-nav > a:hover {
     color: #f91942;
 }
 @media only screen and (max-width: 440px){
+    .menu-nav{
+        position:relative;
+        left: 0px;
+        top: 0px;
+        display: block;
+        margin-top: 10px;
+    }
     #menu > .menu-wrapper {
         width: 100%;
     }
+    #menu {
+        height: 150px;
+    }
     
+.logo-menu{
+    width: 100%;
+    border-bottom: 1px solid rgb(236, 236, 236);
+}
 .logo{
-    width: 30%;
+    width: 35%;
+    padding-bottom: 10px;
 }
 }

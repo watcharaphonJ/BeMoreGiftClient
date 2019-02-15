@@ -10,6 +10,7 @@ import ck from './img/ck-por.jpg'
 import kk from './img/kk-por.jpg'
 import mh from './img/mh-por.jpg'
 import dec from './img/decoration.png'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 class Home extends Component {
     constructor(props) {
@@ -17,6 +18,21 @@ class Home extends Component {
         this.state = {
             search: false
         }
+    }
+    getPosition = () => {
+        window.addEventListener("scroll", function (event) {
+            var scroll = this.scrollY;
+            // if (scroll >= 500) {
+            //     document.getElementById("backtotop").style.visibility = "visible";
+            //     document.getElementById("backtotop").style.opacity = "1";
+            //     document.getElementById("backtotop").style.transform = "scale(1)";
+            // }
+            // else if (scroll <= 500) {
+            //     document.getElementById("backtotop").style.visibility = "hidden";
+            //     document.getElementById("backtotop").style.opacity = "0";
+            //     document.getElementById("backtotop").style.transform = "scale(1)";
+            // }
+        });
     }
 
     checkScreen = () => {
@@ -37,10 +53,11 @@ class Home extends Component {
         }
     }
     render() {
+        this.getPosition()
         return (
             <div className="page-home">
                 <Menu />
-                <div className="content-home">
+                <div className="content-home" id="begin">
                     <div>
 
                         {this.checkScreen()}
@@ -50,6 +67,10 @@ class Home extends Component {
                                 <div className="sub-title">Find the perfect gift for your loved ones.</div>
                             </div>
                             <Searchbox />
+                        </div>
+                        <div id="backtotop" className="visible">
+                            <AnchorLink className=" backtotop fas fa-arrow-circle-up" href='#begin'></AnchorLink>
+
                         </div>
                         <div className="container-browse-categories">
                             <div className="header-browse">

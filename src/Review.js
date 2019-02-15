@@ -13,6 +13,7 @@ import twoStar from "./img/2.png"
 import threeStar from "./img/3.png"
 import fourStar from "./img/4.png"
 import fiveStar from "./img/5.png"
+import picUser from "./img/imgUser.png"
 import swal from 'sweetalert';
 import SlideShow from 'react-image-show';
 import Map from "./MapContainer"
@@ -134,9 +135,8 @@ export default class Review extends Component {
     }
     postReview = () => {
         let { name, email, comment, rating } = this.state
-        console.log(name, email, comment, rating)
         if (name != "" & email != "" & comment != "" & rating != "") {
-            fetch('https://api.bemoregift.com/review/' + this.props.location.state._id, {
+            fetch('https://api.bemoregift.com' + this.props.location.pathname, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
@@ -150,10 +150,11 @@ export default class Review extends Component {
                 })
             })
                 .then(response => response.json())
-                .then(data => swal("Thank you!!", "for your review :)", "success").then(() => { window.location.reload() }))
+                .then(() => swal("Thank you!!", "for your review :)", "success"))
+                .then(() => { window.location.reload() })
 
         } else {
-            swal("Please complete the fill", "", "error");
+            swal("Please complete the fields", "", "error");
         }
     }
     componentDidMount = () => {
@@ -213,21 +214,16 @@ export default class Review extends Component {
     }
     checkDate = (date) => {
         var d = new Date(date),
-
             month = '' + (d.getMonth() + 1),
             day = '' + d.getDate(),
             year = d.getFullYear();
-
         if (month.length < 2) month = '0' + month;
         if (day.length < 2) day = '0' + day;
-
         return [year, month, day].join('-');
     }
     render() {
         let { reviews, comment, star, province, district, category, contact, describe, name, lat, lng, Arrmenu, shop, img, opening } = this.state
         let imgUrl = "https://api.bemoregift.com/static/";
-
-        console.log(img)
         return (
             <div>
                 <Menu />
@@ -311,22 +307,29 @@ export default class Review extends Component {
                                                     reviews.map((review, i) => {
                                                         return (
                                                             <div className="box-comment">
-                                                                <div>
+                                                                <div className="pic-user">
+                                                                    <img src={picUser} />
+                                                                </div>
+
+                                                                <div className="contain-comment">
                                                                     <div className="comment-by">
                                                                         {review.name}
-                                                                    </div>
-
-                                                                    <div>
                                                                         <div className="date">
                                                                             {this.checkDate(review.dateadded)}
                                                                         </div>
+                                                                        <div className="star-rating">
+                                                                            <img className="review" src={this.starPath(review.rating)} />
+                                                                        </div>
                                                                     </div>
-                                                                    <img className="review" src={this.starPath(review.rating)} />
+
+
+                                                                    <div className="comment-content">
+                                                                        {review.review}
+                                                                    </div>
+                                                                    <a href="#" class="rate-review">
+                                                                        <i class="far fa-thumbs-up"></i> Helpful Review <span>2</span></a>
                                                                 </div>
 
-                                                                <div className="comment-content">
-                                                                    {review.review}
-                                                                </div>
                                                             </div>
                                                         )
                                                     })

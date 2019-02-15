@@ -5,9 +5,194 @@
 .border-googlemap{
     border-radius: 4px;
 }
+.gm-style .gm-style-iw-c{
+    padding: 0px;
+}
+.gm-style-iw-d{
+    overflow:hidden !important;
+}
+.gm-ui-hover-effect{
+    position: absolute;
+    top: 10px !important;
+    right: 10px !important;
+    display: inline-block;
+    z-index: 999;
+    text-align: center;
+    line-height: 29px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    height: 29px;
+    width: 29px;
+    background-color: #fff !important;
+    color: #333;
+    border-radius: 50%;
+    -webkit-text-stroke: 1px #fff;
+}
+.map-box{
+    width: 100%;
+    background-color: #fff;
+    border-radius: 4px;
+   /*box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.12);*/
+    position: relative;
+}
+.gm-style-iw-d{
+    max-width: none;
+    max-height: none;
+}
+.fa .fa-times{
+    display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}.fa-remove:before, .fa-close:before, .fa-times:before{
+    content: "\f00d";
+}
+.map-box .listing-img-container img{
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+}
+.gm-style img{
+    max-width: none;
+}
+.star-rating.star{
+    max-width: 100px !important;
+}
+.map-box .listing-item-content{
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    padding: 0 24px;
+    width: 100%;
+    z-index: 50;
+    box-sizing: border-box;
+}
+
+.map-box .listing-item-content h3{
+    color: #fff;
+    font-size: 18px;
+    padding: 0 0 2px 0;
+    font-weight: 500;
+    margin: 0;
+    line-height: 27px;
+}.listing-item-content h3{
+    color: #fff;
+    font-size: 20px;
+    bottom: -1px;
+    position: relative;
+    font-weight: 500;
+    margin: 0;
+    line-height: 31px;
+}
+.map-box .listing-item-content span{
+    font-size: 15px;
+    font-weight: 300;
+    display: inline-block;
+    color: rgba(255,255,255,0.7);
+}
+.listing-item-content span{
+    font-size: 16px;
+    font-weight: 300;
+    display: inline-block;
+    color: rgba(255,255,255,0.7);
+}
+.infoBox .star-rating{
+    font-size: 16px;
+    margin-top: 1px;
+}
+.star-googlemap{
+    max-width: 100px !important;
+  display: inline-block;
+}
+.rating-counter{
+    display: inline-block;
+    float: right;
+}
+.infoBox .star-rating .rating-counter{
+    font-size: 15px;
+    top: -2px;
+}
+.infoBox .rating-counter{
+    position: relative;
+    top: -1px;
+}
+
+.infoBox-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    z-index: 999;
+    text-align: center;
+    line-height: 29px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    height: 29px;
+    width: 29px;
+    background-color: #fff;
+    color: #333;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    font-family: "FontAwesome";
+    border-radius: 50%;
+    -webkit-text-stroke: 1px #fff;
+}
+.map-box .listing-img-container::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: block;
+    background: linear-gradient(to top, rgba(35,35,37,0.85) 0%, rgba(35,35,37,0.40) 35%, rgba(22,22,23,0) 60%, rgba(0,0,0,0) 100%);
+    background-color: rgba(35,35,37,0.2);
+}
+
+.img-infowindow{
+    width: 191px;
+    height: auto;
+    overflow: hidden;
+}
+.listing-img-container{
+    position: relative;
+    width: 300px;
+    display: block;
+}
+.map-box .listing-title{
+    padding: 20px 22px;
+}
+.infoBox .star-rating{
+    font-size: 16px;
+    margin-top: 1px;
+}
+.map-box .listing-img-container img{
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+}
+.map-box .listing-item-content h3{
+    color: #fff;
+    font-size: 18px;
+    padding: 0 0 2px 0;
+    font-weight: 500;
+    margin: 0;
+    line-height: 27px;
+}
+.map-box .listing-item-content span{
+    font-size: 15px;
+    font-weight: 300;
+    display: inline-block;
+    color: rgba(255,255,255,0.7);
+}
+
 @media only screen and (max-width:440px){
     .google-map{
         width: 100%;
         height: 100%;
+    }
+    .listing-img-container{
+        width: 100%;
     }
 }

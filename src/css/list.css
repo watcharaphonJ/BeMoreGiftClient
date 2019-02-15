@@ -1,11 +1,10 @@
-
-
 .sort-container{
     text-align: right;
     padding: 20px;
     padding-right: 40px;
 
 }
+
 .searchbox-list{
     position: absolute;
     top: 500px;
@@ -40,17 +39,15 @@
     transform: translateY(-50%);
 }
 .distance:hover{
-    
     background: #f3f3f3;
-
 }
 .container-slider{
     display: none;
     position: absolute;
-    top: 710px;
+    top: 640px;
     z-index: 99;
     box-shadow: 2px 1px 8px #888;
-    left: 980px;
+    left: 1100px;
     background: white;
     padding: 30px;
     border-radius: 5px;
@@ -64,7 +61,7 @@
 .distance{
     height:auto;
     outline: none;
-    background: #f3f3f3;
+    background: #ffffff;
     border: 1px solid #fff;
     padding: 5px 14px 5px 16px;
     box-shadow: none;
@@ -195,7 +192,7 @@
         height: 700px;
     }
     .sort{
-        background: #f3f3f3;
+        background: white;
     }
     
     .container-slider{

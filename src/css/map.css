@@ -51,6 +51,7 @@
 .map-box .listing-img-container img{
     width: 100%;
     border-radius: 4px 4px 0 0;
+    max-height: 227px;
 }
 .gm-style img{
     max-width: none;
@@ -104,8 +105,7 @@
     max-width: 100px !important;
   display: inline-block;
 }
-.rating-counter{
-    display: inline-block;
+.rating-counter{  
     float: right;
 }
 .infoBox .star-rating .rating-counter{
@@ -194,5 +194,8 @@
     }
     .listing-img-container{
         width: 100%;
+    }
+    .star-googlemap{
+        max-width: 80px !important;
     }
 }

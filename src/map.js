@@ -80,11 +80,12 @@ export class MapContainer extends Component {
             points.map((points) => {
                 let star = points[3]
                 let id = points[7]
+                console.log(id)
                 let urlImg = "https://api.bemoregift.com/static/" + points[6]
                 let divStar = this.starPath(star)
                 let contentInfowindow =
                     "<div class='map-box'>" +
-                    "   <a href='review/'" + id + " class='listing-img-container'>" +
+                    "   <a href='review/" + id + " 'class='listing-img-container'>" +
                     '       <img src=' + urlImg + ' alt="">' +
                     '       <div class="listing-item-content">' +
                     '           <h3> ' + points[0] + '</h3>' +
@@ -94,8 +95,9 @@ export class MapContainer extends Component {
                     '   <div class="listing-content">' +
                     '       <div class="listing-title">' +
                     '           <div class="star-rating" >' +
-                    '           <div class="rating-counter">(' + points[8] + ' reviews)</div>' +
                     divStar +
+                    '           <div class="rating-counter">(' + points[8] + ' reviews)</div>' +
+
                     '  </div>' +
                     '</div>' +
                     '</div>' +

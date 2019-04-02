@@ -57,7 +57,6 @@ class List extends Component {
             });
     }
 
-
     getMyLocation() {
         const location = window.navigator && window.navigator.geolocation
 

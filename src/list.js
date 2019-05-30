@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import MapContainer from './map'
 import SearchBox from './Searchbox'
 import ReactSimpleRange from 'react-simple-range';
+import MenuMobile from './menuMobile'
 
 const API_URL = process.env.REACT_APP_API_URL;
 const API_CATEGORY = process.env.REACT_APP_API_GET_CATEGORY
@@ -182,11 +183,29 @@ class List extends Component {
                 });
             });
     }
+
+    showMenu = () => {
+
+        var width = window.screen.availWidth
+        if (width > 640) {
+            return (
+
+                <Menu />
+            )
+        } else {
+            return (
+
+                <MenuMobile />)
+        }
+    }
     render() {
-        const { volume, result } = this.state
+        const { volume } = this.state
         return (
             <div className="page-list">
-                <Menu />
+
+                {
+                    this.showMenu()
+                }
                 {!this.state.fetched ?
                     <div className="loading"><i class="fas fa-spinner "></i></div>
                     :

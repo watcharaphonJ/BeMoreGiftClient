@@ -27,7 +27,9 @@ class App extends Component {
             <div className="bgMenu" id="menu">
                 <div className="menu-wrapper" id="main">
                     <div className="logo-menu">
-                        <img className="logo" src={Logo} />
+
+                        <NavLink exact to="/" activeClassName="selected">  <img className="logo" src={Logo} /></NavLink>
+
                     </div>
                     <div className="menu-nav">
                         <NavLink exact to="/" activeClassName="selected">Home</NavLink>

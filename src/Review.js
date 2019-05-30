@@ -15,6 +15,7 @@ import fourStar from "./img/4.png"
 import fiveStar from "./img/5.png"
 import picUser from "./img/imgUser.png"
 import swal from 'sweetalert';
+import MenuMobile from './menuMobile'
 import SlideShow from 'react-image-show';
 import Map from "./MapContainer"
 const API_URL = process.env.REACT_APP_API_URL;
@@ -170,7 +171,6 @@ export default class Review extends Component {
         fetch(URL)
             .then(response => response.json())
             .then(data => {
-                // this.iniMap(data.results.location.lat, data.results.location.lng, data.results.name)
                 let imgUrl = "https://api.bemoregift.com/static/";
                 let stars = Math.round((data.results.rating.sum / data.results.rating.count)) || 0
                 this.setState({
@@ -221,12 +221,52 @@ export default class Review extends Component {
         if (day.length < 2) day = '0' + day;
         return [year, month, day].join('-');
     }
+    checkMobile = () => {
+
+        var width = window.screen.availWidth
+        if (width > 640) {
+            return (
+                <div className="listing-nav-container">
+                    <div className="listing-nav">
+                        <AnchorLink className="anchorLink Overview" href='#overview'>Overview </AnchorLink>
+                        <AnchorLink className="anchorLink" href='#pricing'>Pricing</AnchorLink>
+                        <AnchorLink className="anchorLink" href='#location'>Location</AnchorLink>
+                        <AnchorLink className="anchorLink" href='#review'>Reviews</AnchorLink>
+                        <AnchorLink className="anchorLink" href='#addreview'>Add Review</AnchorLink>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="listing-nav-container">
+                    <div className="text-overview">Overview </div>
+                </div>
+            )
+        }
+
+    }
+    showMenu = () => {
+
+        var width = window.screen.availWidth
+        if (width > 640) {
+            return (
+
+                <Menu />
+            )
+        } else {
+            return (
+
+                <MenuMobile />)
+        }
+    }
     render() {
         let { reviews, comment, star, province, district, category, contact, describe, name, lat, lng, Arrmenu, shop, img, opening } = this.state
         let imgUrl = "https://api.bemoregift.com/static/";
         return (
             <div>
-                <Menu />
+                {
+                    this.showMenu()
+                }
                 {!this.state.fetched ? <div className="loading"><i class="fas fa-spinner "></i></div> :
                     <div className="container-review">
                         <div className="Divcarousel">
@@ -259,15 +299,11 @@ export default class Review extends Component {
                                     </div>
 
                                     <div className="title-overview">
-                                        <div className="listing-nav-container">
-                                            <div className="listing-nav">
-                                                <AnchorLink className="anchorLink Overview" href='#overview'>Overview </AnchorLink>
-                                                <AnchorLink className="anchorLink" href='#pricing'>Pricing</AnchorLink>
-                                                <AnchorLink className="anchorLink" href='#location'>Location</AnchorLink>
-                                                <AnchorLink className="anchorLink" href='#review'>Reviews</AnchorLink>
-                                                <AnchorLink className="anchorLink" href='#addreview'>Add Review</AnchorLink>
-                                            </div>
-                                        </div>
+                                        {this.checkMobile()}
+
+
+
+
                                         <section id="overview">
                                             <div className="describe">{describe}</div>
                                         </section>
@@ -290,7 +326,7 @@ export default class Review extends Component {
                                     </div>
                                     <section id="location">
                                         <div className="header-overview">Location</div>
-                                        <div className="bing-map" style={{ height: "500px", position: "relative" }}  >
+                                        <div className="bing-map" style={{ height: "335px", position: "relative" }}  >
                                             <Map state={{ lat: lat, lng: lng, name: name, width: "100%", height: "100%" }} />
                                             {/* <div className="google-map" style={map} id="map-review">
 

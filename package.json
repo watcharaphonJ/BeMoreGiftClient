@@ -25,6 +25,7 @@
     "react-responsive-carousel": "^3.1.45",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
+    "react-select": "^2.4.3",
     "react-simple-range": "^1.6.0",
     "react-slick": "^0.23.2",
     "sweetalert": "^2.1.2"

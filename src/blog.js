@@ -6,12 +6,28 @@ import ck from './img/ck.jpg'
 import kk from './img/kk.jpg'
 import mh from './img/mh.jpg'
 import { Link } from "react-router-dom";
+import MenuMobile from './menuMobile'
 
 export default class blog extends Component {
+
+    showMenu = () => {
+
+        var width = window.screen.availWidth
+        if (width > 640) {
+            return (
+
+                <Menu />
+            )
+        } else {
+            return (
+
+                <MenuMobile />)
+        }
+    }
     render() {
         return (
             <div>
-                <Menu />
+                {this.showMenu()}
                 <div className="title-bar">
                     <div className="container-title-blog">
                         <div className="title-blog">

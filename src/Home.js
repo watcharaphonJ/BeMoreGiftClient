@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import ck from './img/ck-por.jpg'
 import kk from './img/kk-por.jpg'
 import mh from './img/mh-por.jpg'
+import MenuMobile from './menuMobile'
 import dec from './img/decoration.png'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
@@ -52,11 +53,28 @@ class Home extends Component {
             )
         }
     }
+    showMenu = () => {
+
+        var width = window.screen.availWidth
+        if (width > 640) {
+            return (
+
+                <Menu />
+            )
+        } else {
+            return (
+
+                <MenuMobile />)
+        }
+    }
     render() {
         this.getPosition()
         return (
             <div className="page-home">
-                <Menu />
+
+                {
+                    this.showMenu()
+                }
                 <div className="content-home" id="begin">
                     <div>
 

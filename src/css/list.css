@@ -189,14 +189,14 @@
          position: relative;
         height: 500px;
         width: 100%;
-        height: 700px;
+        height: 375px;
     }
     .sort{
         background: white;
     }
     
     .container-slider{
-        top: 710px;
+        top: 510px;
         left: 40px;
         display: none;
     }

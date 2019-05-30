@@ -4,6 +4,7 @@ import Footer from './footer'
 import Map from "./MapContainer"
 import './css/contact.css'
 import img from './img/our-office.jpg'
+import MenuMobile from './menuMobile'
 import swal from 'sweetalert';
 export default class contact extends Component {
     constructor(props) {
@@ -87,10 +88,27 @@ export default class contact extends Component {
             ).then(() => { window.location.reload() })
 
     }
+
+    showMenu = () => {
+
+        var width = window.screen.availWidth
+        if (width > 640) {
+            return (
+
+                <Menu />
+            )
+        } else {
+            return (
+
+                <MenuMobile />)
+        }
+    }
     render() {
         return (
             <div>
-                <Menu />
+                {
+                    this.showMenu()
+                }
                 {
                     this.checkScreen()
                 }

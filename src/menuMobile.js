@@ -2,20 +2,22 @@ import React, { Component } from 'react'
 import './css/menuMobile.css'
 
 import { NavLink } from 'react-router-dom'
-
+var open = false
 export default class menuMobile extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            open: false
+            open: false,
+            hong: false
         }
     }
     toggleMenuBar = () => {
-        var { open } = this.state
-        this.setState({
-            open: !open
-        })
-        if (this.state.open) {
+        open = !open
+        console.log(open)
+        // this.setState({
+        //     open: !open
+        // })
+        if (open) {
             document.getElementById("menu-nav-mobile").style.transition = "0.5s";
             document.getElementById("menu-nav-mobile").style.display = 'block'
             document.getElementById("menu-nav-mobile").style.overflowY = "hidden";
@@ -27,6 +29,7 @@ export default class menuMobile extends Component {
             document.getElementById("menu-nav-mobile").boxShadow = "none"
         }
     }
+
     render() {
         var { open } = this.state
         console.log(open)
@@ -34,7 +37,11 @@ export default class menuMobile extends Component {
             <div className="bgMenu-mobile">
                 <div className="menu-wrapper-mobile" id="main">
                     <div className="logo-menu-mobile">
-                        <i id="icon-menu-mobile" class="fas fa-bars icon-menu-mobile" onClick={this.toggleMenuBar}></i>
+                        <i id="icon-menu-mobile" class="fas fa-bars icon-menu-mobile" onClick={
+
+                            this.toggleMenuBar
+
+                        }></i>
                     </div>
                     <div id="menu-nav-mobile" className="menu-nav-mobile">
                         <div className="element-sub-menu-mobile">

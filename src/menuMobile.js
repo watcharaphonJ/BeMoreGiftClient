@@ -22,7 +22,7 @@ export default class menuMobile extends Component {
             document.getElementById("menu-nav-mobile").style.display = 'block'
             document.getElementById("menu-nav-mobile").style.overflowY = "hidden";
             document.getElementById("menu-nav-mobile").style.maxHeight = "500px";
-            document.getElementById("menu-nav-mobile").style.boxShadow = "2px 11px 10px -9px #363636";
+            document.getElementById("menu-nav-mobile").style.boxShadow = "rgb(54, 54, 54) -10px 11px 10px -9px";
         } else {
             document.getElementById("menu-nav-mobile").style.transition = "0.5s";
             document.getElementById("menu-nav-mobile").style.maxHeight = "0";

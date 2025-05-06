@@ -23,7 +23,7 @@
     "react-moment": "^0.8.4",
     "react-rangeslider": "^2.2.0",
     "react-responsive-carousel": "^3.1.45",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^7.5.2",
     "react-scripts": "2.1.1",
     "react-select": "^2.4.3",
     "react-simple-range": "^1.6.0",
